@@ -17,25 +17,26 @@ class ImageManipulation {
   function createPreview($parameterArray, $dsid, $file, $file_ext) {
     $system = getenv('System');
     $file_suffix = '_' . $dsid . '.' . $file_ext;
-    $width = $parameterArray['width']; 
+    $width = $parameterArray['width'];
 
     if (!isset($parameterArray['height'])) {
-	$height = $width;
-    } else { 
-	$height = $parameterArray['height'];
+      $height = $width;
+    }
+    else {
+      $height = $parameterArray['height'];
     }
 
     $returnValue = TRUE;
     $output = array();
-    
-    $destDir  = dirname($file).'/work';
-    $destFile = $destDir .'/'. basename($file) . $file_suffix;
-    if (!is_dir($destDir)) { 
+
+    $destDir = dirname($file) . '/work';
+    $destFile = $destDir . '/' . basename($file) . $file_suffix;
+    if (!is_dir($destDir)) {
       @mkdir($destDir);
     }
 
     if (!file_exists($destFile)) {
-      exec('convert -resize ' . $width . 'x'.$height.' -quality 85  "' . $file . '"[0] -strip "' .$destFile . '" 2>&1 &', $output, $returnValue);
+      exec('convert -resize ' . $width . 'x' . $height . ' -quality 85  "' . $file . '"[0] -strip "' . $destFile . '" 2>&1 &', $output, $returnValue);
     }
     else
       $returnValue = '0';
@@ -98,7 +99,7 @@ class ImageManipulation {
     else {
       ObjectHelper::warnIfMisconfigured('ImageMagick');
     }
-    exec("convert {$file}[0] -thumbnail x2000 -thumbnail x450  -resize '450x<' -resize 50% -fuzz 1% -trim +repage -gravity center -crop 200x200+0+0 +repage -format jpg -quality 100  $file-tn.jpg", $output, $returnValue);
+    exec("convert \"{$file}\"[0] -thumbnail x2000 -thumbnail x450  -resize '450x<' -resize 50% -fuzz 1% -trim +repage -gravity center -crop 200x200+0+0 +repage -format jpg -quality 100 \"$file-tn.jpg\"", $output, $returnValue);
     if ($returnValue == '0') {
       $_SESSION['fedora_ingest_files']["TN"] = $file . '-tn.jpg';
     }

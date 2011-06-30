@@ -1089,6 +1089,7 @@ class ContentModel extends XMLDatastream {
     $ret = FALSE;
     if (self::validDsid($dsid) && $this->validate()) {
       $method = $this->xml->getElementsByTagName('edit_metadata_method');
+      $test = $this->xml->saveXML();
       if ($method->length > 0 && $method->item(0)->getAttribute('dsid') == $dsid) {
         $method = $method->item(0);
         $module = $method->getAttribute('module');

@@ -21,6 +21,12 @@
  * Datastreams which don't have this element are assumed to be at version 0.
  */
 function fedora_repository_solution_packs_page() {
+  module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+  if (!fedora_available()){
+    drupal_set_message("The Fedora repository is not  currently available. <br />Please contact system administrator.", 'status', false);
+    return '';
+  }
+
   $enabled_solution_packs = module_invoke_all('required_fedora_objects');
   $output = '';
   foreach ($enabled_solution_packs as $solution_pack_module => $solution_pack_info) {
