@@ -988,7 +988,7 @@ function digital_repository_get_items($pid = NULL, $dsId = NULL, $collection = N
 // Add a 'manage object' tab for all objects, where detailed list of content is shown.
   $obj = new FedoraObjectDetailedContent($pid);
   $object_details = $obj->showFieldSets();
-  if ($object_details['fedora_object_details']['#selected'] == true) {
+  if ($object_details['fedora_object_details']['#selected'] == TRUE) {
     foreach ($cmodels_tabs as $cmodel_tab) {
       if (is_array($cmodel_tab)) {
         $cmodel_tab['#selected'] = FALSE;
@@ -1065,7 +1065,7 @@ function repository_service($pid = NULL, $servicePid = NULL, $serviceMethod = NU
 //drupal_set_message(t("You do not have access to Fedora objects within the attempted namespace or access to Fedora denied"), 'error');
     drupal_access_denied();
     if (user_access('access administration pages')) {
-      drupal_set_message(t("PIDs may be added to allowed namespaces, or all namespace restrictions removed !here", array('!here' => l('here', 'admin/settings/fedora_repository'))), 'error');
+      drupal_set_message(t("PIDs may be added to allowed namespaces, or all namespace restrictions removed @here", array('@here' => check_plain(l('here', 'admin/settings/fedora_repository')))), 'error');
     }
     return ' ';
   }
