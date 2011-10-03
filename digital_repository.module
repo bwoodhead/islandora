@@ -399,7 +399,7 @@ function add_stream_form_submit($form, &$form_state) {
 
     file_delete($file);
   } catch (exception $e) {
-    drupal_set_message(t($e->getMessage()), 'error');
+    drupal_set_message(t("@message", array('@message' => check_plain($e->getMessage()))), 'error');
     return;
   }
   $form_state['rebuild'] = TRUE;
@@ -435,7 +435,7 @@ function add_stream_form_validate($form, &$form_state) {
     return FALSE;
   }
   if (!(preg_match("/^[a-zA-Z]/", $dsid))) {
-    form_set_error('', t("Data stream ID ($dsid) has to start with a letter."));
+    form_set_error('', t("Data stream ID (@dsid) has to start with a letter.", array('@dsid', check_plain($dsid))));
     return FALSE;
   }
   if (strlen($dsLabel) > 64) {
@@ -518,7 +518,7 @@ function digital_repository_purge_object_form_submit($form, &$form_state) {
         drupal_set_message(t('Error:  Insufficient permissions to purge object.'), 'error');
       }
       else {
-        drupal_set_message(t($e->getMessage()), 'error');
+        drupal_set_message(t(check_plain($e->getMessage())), 'error');
       }
       return;
     }
