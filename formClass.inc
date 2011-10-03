@@ -394,7 +394,7 @@ class formClass {
             $oai->appendChild($previousElement);
           }
         } catch (exception $e) {
-          drupal_set_message(t($e->getMessage()), 'error');
+          drupal_set_message(t("@error", array('@error', check_plain($e->getMessage()))), 'error');
           continue;
         }
       }
