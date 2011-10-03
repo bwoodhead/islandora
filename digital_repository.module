@@ -934,7 +934,7 @@ function digital_repository_get_items($pid = NULL, $dsId = NULL, $collection = N
   }
   if (!digital_repository_access(OBJECTHELPER::$OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
     if (user_access('access administration pages')) {
-      drupal_set_message(t("PIDs may be added to allowed namespaces, or all namespace restrictions removed !here", array('!here' => l('here', check_plain('admin/settings/fedora_repository')))), 'warning');
+      drupal_set_message(t("PIDs may be added to allowed namespaces, or all namespace restrictions removed !here", array('!here' => check_plain(l('here', 'admin/settings/fedora_repository')))), 'warning');
     }
     drupal_access_denied();
     exit;
