@@ -64,7 +64,7 @@ function batch_creation_form(&$form_state, $collection_pid, $content_models) {
 
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Create Objects ')
+    '#value' => check_plain(t('Create Objects'))
   );
 
 
@@ -119,8 +119,8 @@ function batch_creation_form_submit($form, &$form_state) {
   $file = $form_state['values']['file'];
   $file_name = $file->filepath;
   $file_list = array();
-  $cmdString = "unzip -q -o -d $tmp_dir \"$file_name\"";
-  system($cmdString, $retVal);
+  $cmd_string = "unzip -q -o -d $tmp_dir \"$file_name\"";
+  system($cmd_string, $ret_val);
   $dirs = array();
   $doNotAdd = array('.', '..', '__MACOSX');
   array_push($dirs, $tmp_dir);
