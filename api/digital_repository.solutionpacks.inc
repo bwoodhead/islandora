@@ -53,13 +53,13 @@ function fedora_repository_solution_pack_form(&$form_state, $solution_pack_modul
   $needs_install = FALSE;
   $form = array();
   $form['solution_pack_module'] = array(
-    '#type' => 'hidden',
+    '#type' => check_plain('hidden'),
     '#value' => $solution_pack_module,
   );
 
   if (!$form_state['submitted']) {
     $form['soluction_pack_name'] = array(
-      '#type' => 'markup',
+      '#type' => check_plain('markup'),
       '#value' => t($solution_pack_name),
       '#prefix' => '<h3>',
       '#suffix' => '</h3>',
@@ -127,13 +127,13 @@ function fedora_repository_solution_pack_form(&$form_state, $solution_pack_modul
       }
     }
     $form['objects']['table'] = array(
-      '#type' => 'markup',
+      '#type' => check_plain('markup'),
       '#value' => theme_table($table_header, $table_rows),
     );
   }
 
   $form['install_status'] = array(
-    '#type' => 'markup',
+    '#type' => check_plain('markup'),
     '#prefix' => '<strong>' . t('Object status:') . '&nbsp;</strong>',
     '#suffix' => '&nbsp;',
   );
@@ -146,7 +146,7 @@ function fedora_repository_solution_pack_form(&$form_state, $solution_pack_modul
   $form['submit'] = array(
     '#value' => t('Install'),
     '#disabled' => !$needs_install && !$needs_update,
-    '#type' => 'submit',
+    '#type' => check_plain('submit'),
     '#name' => $solution_pack_module,
   );
 
