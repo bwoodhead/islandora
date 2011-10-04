@@ -67,8 +67,7 @@ function batch_creation_form(&$form_state, $collection_pid, $content_models) {
     '#value' => check_plain(t('Create Objects'))
   );
 
-
-  return($form);
+  return $form;
 }
 
 /**
@@ -131,6 +130,7 @@ function batch_creation_form_submit($form, &$form_state) {
     }
   }
   foreach ($dirs as $directory) {
+    // Is this correct???
     if ($inputs = opendir($directory)) {
       while (FALSE !== ($file_name = readdir($inputs))) {
         if (!in_array($file_name, $do_not_add) && is_dir($file_name) == FALSE) {
@@ -183,7 +183,7 @@ function create_batch_objects($label, $content_model, $object_files, $collection
   module_load_include('inc', 'fedora_repository', 'ContentModel');
   module_load_include('inc', 'fedora_repository', 'MimeClass');
   $cm = ContentModel::loadFromModel($content_model, 'ISLANDORACM');
-  $allowedMimeTypes = $cm->getMimetypes();
+  $allowed_mime_types = $cm->getMimetypes();
   $mime_helper = new MimeClass();
   $pid = fedora_item::get_next_PID_in_namespace($namespace);
   module_load_include('inc', 'fedora_reppository', 'api/fedora_item');
@@ -203,7 +203,7 @@ function create_batch_objects($label, $content_model, $object_files, $collection
   $use_primary = TRUE;
   foreach ($object_files as $ext => $filename) {
     $file_mimetype = $mime_helper->get_mimetype($filename);
-    if (in_array($file_mimetype, $allowedMimeTypes)) {
+    if (in_array($file_mimetype, $allowed_mime_types)) {
       $added = $cm->execIngestRules($filename, $file_mimetype);
     }
     else {
@@ -242,7 +242,7 @@ function batch_create_dc_from_mods($mods_xml) {
   try {
     $proc = new XsltProcessor();
   } catch (Exception $e) {
-    drupal_set_message(t("!e", array('!e' => $e->getMessage())), 'error');
+    drupal_set_message(t("@e", array('@e' => check_plain($e->getMessage()))), 'error');
     return " ";
   }
 
