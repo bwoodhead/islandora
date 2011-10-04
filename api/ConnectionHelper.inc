@@ -41,7 +41,7 @@ class ConnectionHelper {
       $new_url = 'https://' . $creds . '@' . substr($url, 8);
     }
     else {
-      drupal_set_message(t('Invalid URL: !url', array('!url' => $url)));
+      drupal_set_message(t('Invalid URL: @url', array('@url' => check_plain($url))));
       return NULL;
     }
 
@@ -71,7 +71,7 @@ class ConnectionHelper {
             'exceptions' => $exceptions,
           ));
       } catch (SoapFault $e) {
-        drupal_set_message(t("!e", array('!e' => $e->getMessage())));
+        drupal_set_message(t("@e", array('@e' => check_plain($e->getMessage()))));
         return NULL;
       }
     }
@@ -83,7 +83,7 @@ class ConnectionHelper {
             'exceptions' => TRUE,
           ));
       } catch (SoapFault $e) {
-        drupal_set_message(t("!e", array('!e' => $e->getMessage())));
+        drupal_set_message(t("@e", array('@e' => check_plain($e->getMessage()))));
         return NULL;
       }
     }
