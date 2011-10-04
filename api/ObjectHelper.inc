@@ -1,6 +1,5 @@
 <?php
 
-// $Id$
 /**
  * @file 
  * Object Helper Class
@@ -288,6 +287,7 @@ class ObjectHelper {
    * internal function
    * @param $pid String
    * @param $dataStreamValue Object
+   * @todo Fix the forms. They need to use the form api
    */
   function create_link_for_ds($pid, $dataStreamValue) {
     global $base_url;
@@ -334,16 +334,16 @@ class ObjectHelper {
     $view = '<a href="' . $base_url . '/fedora/repository/' . drupal_urlencode($pid) . '/' . $id . '/' . drupal_urlencode($label) .
         '" target="_blank" >' . t('View') . '</a>';
     $action = "$base_url/fedora/repository/object_download/" . drupal_urlencode($pid) . '/' . $id . '/' . drupal_urlencode(preg_replace('/\//i', '${1}_', $label)); // Necessary to handle the case of Datastream labels that contain slashes. Ugh.
-    $downloadVersion = '<form method="GET" action="' . $action . '"><input type="submit" value="' . t('Download') . '"></form>';
+    //$downloadVersion = '<form method="GET" action="' . $action . '"><input type="submit" value="' . t('Download') . '"></form>';
     if (user_access(ObjectHelper :: $EDIT_FEDORA_METADATA)) {
       $versions = $item->get_datastream_history($id);
       if (is_array($versions)) {
-        $downloadVersion = '<form method="GET" action="' . $action . '" onsubmit="this.action=\'' . $action . '\' + \'/\'+this.version.value;">';
-        $downloadVersion .= '<select name="version">';
-        foreach ($versions as $version) {
-          $downloadVersion .= '<option>' . $version->createDate . '</option>';
-        }
-        $downloadVersion .= '</select><input type="submit" value="' . t('Download') . '"></form>';
+//        $downloadVersion = '<form method="GET" action="' . $action . '" onsubmit="this.action=\'' . $action . '\' + \'/\'+this.version.value;">';
+//        $downloadVersion .= '<select name="version">';
+//        foreach ($versions as $version) {
+//          $downloadVersion .= '<option>' . $version->createDate . '</option>';
+//        }
+//        $downloadVersion .= '</select><input type="submit" value="' . t('Download') . '"></form>';
       }
     }
 
