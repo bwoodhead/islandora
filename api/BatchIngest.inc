@@ -122,18 +122,18 @@ function batch_creation_form_submit($form, &$form_state) {
   $cmd_string = "unzip -q -o -d $tmp_dir \"$file_name\"";
   system($cmd_string, $ret_val);
   $dirs = array();
-  $doNotAdd = array('.', '..', '__MACOSX');
+  $do_not_add = array('.', '..', '__MACOSX');
   array_push($dirs, $tmp_dir);
   $files = scandir($tmp_dir);
   foreach ($files as $file) {
-    if (is_dir("$tmp_dir/$file") & !in_array($file, $doNotAdd)) {
+    if (is_dir("$tmp_dir/$file") & !in_array($file, $do_not_add)) {
       array_push($dirs, $tmp_dir . $file);
     }
   }
   foreach ($dirs as $directory) {
     if ($inputs = opendir($directory)) {
       while (FALSE !== ($file_name = readdir($inputs))) {
-        if (!in_array($file_name, $doNotAdd) && is_dir($file_name) == FALSE) {
+        if (!in_array($file_name, $do_not_add) && is_dir($file_name) == FALSE) {
           $ext = strrchr($file_name, '.');
           $base = preg_replace("/$ext$/", '', $file_name);
           $ext = substr($ext, 1);
@@ -147,7 +147,7 @@ function batch_creation_form_submit($form, &$form_state) {
   }
 
   if (($cm = ContentModel::loadFromModel($content_model, 'ISLANDORACM')) === FALSE) {
-    drupal_set_message("$content_model not found", "error");
+    drupal_set_message(t("@content_model not found", array('@content_model' => check_plain($content_model))), "error");
     return;
   }
 
