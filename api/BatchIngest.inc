@@ -78,7 +78,7 @@ function batch_creation_form(&$form_state, $collection_pid, $content_models) {
 
 function batch_creation_form_validate($form, &$form_state) {
 
-  $fieldName = 'file-location';
+  $field_name = 'file-location';
   if (isset($_FILES['files']) && is_uploaded_file($_FILES['files']['tmp_name'][$fieldName])) {
     $file = file_save_upload($fieldName);
     if ($file->filemime != 'application/zip') {
@@ -117,9 +117,9 @@ function batch_creation_form_submit($form, &$form_state) {
   $tmpDir = file_directory_path() . '/' . $dirName . '/';
   mkdir($tmpDir);
   $file = $form_state['values']['file'];
-  $fileName = $file->filepath;
+  $file_name = $file->filepath;
   $file_list = array();
-  $cmdString = "unzip -q -o -d $tmpDir \"$fileName\"";
+  $cmdString = "unzip -q -o -d $tmpDir \"$file_name\"";
   system($cmdString, $retVal);
   $dirs = array();
   $doNotAdd = array('.', '..', '__MACOSX');
