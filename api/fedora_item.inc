@@ -581,7 +581,7 @@ class Fedora_Item {
     try {
       $relsext = $this->get_datastream_dissemination('RELS-EXT');
     } catch (exception $e) {
-      drupal_set_message(t("Error retrieving RELS-EXT of object $pid"), 'error');
+      drupal_set_message(t("Error retrieving RELS-EXT of object @pid", array('@pid' => check_plain($pid))), 'error');
       return $relationships;
     }
 
