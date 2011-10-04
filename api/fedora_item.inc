@@ -77,7 +77,7 @@ class Fedora_Item {
   function add_datastream_from_file($datastream_file, $datastream_id, $datastream_label = NULL, $datastream_mimetype = '', $controlGroup = 'M', $logMessage = NULL) {
     module_load_include('inc', 'fedora_repository', 'MimeClass');
     if (!is_file($datastream_file)) {
-      drupal_set_message("$datastream_file not found<br />", 'warning');
+      drupal_set_message(t("@datastream_file not found<br />", array('@datastream_file' => check_plain($datastream_file))), 'warning');
       return;
     }
     if (empty($datastream_mimetype)) {
@@ -553,7 +553,7 @@ class Fedora_Item {
     try {
       $relsext = $this->get_datastream_dissemination('RELS-EXT');
     } catch (exception $e) {
-      drupal_set_message(t("Error retrieving RELS-EXT of object $pid"), 'error');
+      drupal_set_message(t("Error retrieving RELS-EXT of object @pid", array( '@pid' => check_plain($pid))), 'error');
       return $relationships;
     }
 
@@ -617,7 +617,7 @@ class Fedora_Item {
       foreach ($relationships as $rel) {
         if (empty($rel['subject']) || empty($rel['predicate']) || empty($rel['object']) || $rel['subject'] != 'info:fedora/' . $this->pid) {
           // drupal_set_message should use parameterized variables, not interpolated.
-          drupal_set_message(t("Error with relationship format: " . $rel['subject'] . " - " . $rel['predicate'] . ' - ' . $rel['object']), "error");
+          drupal_set_message(t("Error with relationship format: @subject - @predicate - @object", array( '@subject' =>  check_plain($rel['subject']), '@predicate' =>  check_plain($rel['predicate']), '@object' =>  check_plain($rel['object']), )), "error");
           return FALSE;
         }
       }
@@ -879,10 +879,10 @@ class Fedora_Item {
           if (!$quiet) {
 
             if (preg_match('/org\.fcrepo\.server\.security\.xacml\.pep\.AuthzDeniedException/', $e->getMessage())) {
-              drupal_set_message(t('Error:  Insufficient permissions to call SOAP function !fn.', array('!fn' => $function_name)), 'error');
+              drupal_set_message(t('Error:  Insufficient permissions to call SOAP function @fn.', array('@fn' => check_plain($function_name))), 'error');
             }
             else {
-              drupal_set_message(t("Error trying to call SOAP function $function_name. Check watchdog logs for more information."), 'error');
+              drupal_set_message(t("Error trying to call SOAP function @function_name. Check watchdog logs for more information.", array('@function_name' => check_plain($function_name))), 'error');
             }
 
             watchdog(t("FEDORA_REPOSITORY"), "Error Trying to call SOAP function !fn: !e", array('!fn' => $function_name, '!e' => $e), NULL, WATCHDOG_ERROR);
