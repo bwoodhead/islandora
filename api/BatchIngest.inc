@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ * Batch Ingest stuff
+ */
 
 /**
  * batch creation form submit
@@ -39,14 +43,14 @@ function batch_creation_form(&$form_state, $collection_pid, $content_models) {
     '#title' => "Choose Metadata Type",
     '#type' => 'radios',
     '#options' => array('MODS' => 'MODS', "DC" => "DUBLIN CORE"),
-    '#required' => true,
+    '#required' => TRUE,
     '#description' => t("Select primary metadata schema"),
   );
   $form['content_model'] = array(
     '#title' => "Choose content model to be associated with objects ingested",
     '#type' => 'select',
     '#options' => $cm_options,
-    '#required' => true,
+    '#required' => TRUE,
     '#description' => t("Content models describe the behaviours of objects with which they are associated."),
   );
   $form['indicator']['file-location'] = array(
@@ -260,14 +264,14 @@ function batch_create_dc_from_mods($mods_xml) {
  */
 function recursive_directory_delete($dir) {
   if (!file_exists($dir))
-    return true;
+    return TRUE;
   if (!is_dir($dir))
     return unlink($dir);
   foreach (scandir($dir) as $item) {
     if ($item == '.' || $item == '..')
       continue;
     if (!recursive_directory_delete($dir . DIRECTORY_SEPARATOR . $item))
-      return false;
+      return FALSE;
   }
   return rmdir($dir);
 }
