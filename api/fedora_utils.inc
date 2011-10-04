@@ -131,7 +131,7 @@ function do_curl_ext($url, $return_to_variable = 1, $number_of_post_vars = 0, $p
     
     $error_code = curl_errno($ch);
     $error_string = curl_error($ch);
-    return array ($ret_val, $error_code, $error_string);
+    return array($ret_val, $error_code, $error_string);
   }
   
   else {
@@ -299,7 +299,7 @@ function get_content_models_as_option_array() {
       $nameparts = explode(':', $parts[0]);
       if (!$restricted || in_array($nameparts[0], $allowed))
         if ($item->get_datastream_dissemination('ISLANDORACM')) {
-          $options[$parts[0]] = $parts[1]. ' ~ ' . $parts[0] ;
+          $options[$parts[0]] = $parts[1] . ' ~ ' . $parts[0] ;
         }
     }
   }

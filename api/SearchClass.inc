@@ -318,7 +318,7 @@ class SearchClass {
     try {
       $proc = new XsltProcessor();
     } catch (Exception $e) {
-      drupal_set_message(t('Error loading ' . $pathToXSLT . ' xslt!') . $e->getMessage());
+      drupal_set_message(t('Error loading @pathToXSLT xslt! @message', array('@pathToXSLT' => check_plain($pathToXSLT), '@message' => check_plain($e->getMessage()))));
       return ' ';
     }
 
@@ -337,7 +337,7 @@ class SearchClass {
     $test = $xsl->load($pathToXSLT);
 
     if (!isset($test)) {
-      drupal_set_message(t('Error loading ' . $pathToXSLT . ' xslt!'));
+      drupal_set_message(t('Error loading @pathToXSLT xslt!', array('@pathToXSLT' => check_plain($pathToXSLT))));
       return t('Error loading !pathToXSLT xslt.', array('!pathToXSLT' => $pathToXSLT));
     }
 
@@ -381,7 +381,7 @@ class SearchClass {
     try {
       $proc = new XsltProcessor();
     } catch (Exception $e) {
-      drupal_set_message(t('Error loading results xslt!') . $e->getMessage());
+      drupal_set_message(t('Error loading results xslt! @message', array('@message' => check_plain($e->getMessage()))));
       return ' ';
     }
     if (isset($query)) {
@@ -434,7 +434,7 @@ class SearchClass {
     try {
       $proc = new XsltProcessor();
     } catch (Exception $e) {
-      drupal_set_message(t('Error loading results xslt!') . " " . $e->getMessage());
+      drupal_set_message(t('Error loading results xslt! @message', array('@message' => check_plain($e->getMessage()))));
       return ' ';
     }
 
