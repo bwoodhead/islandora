@@ -113,8 +113,8 @@ function batch_creation_form_submit($form, &$form_state) {
   }
   $namespace = $namespace_mappings[$content_model];
   $namespace = preg_replace('/:.*/', '', $namespace);
-  $dirName = "temp" . $user->uid;
-  $tmpDir = file_directory_path() . '/' . $dirName . '/';
+  $dir_name = "temp" . $user->uid;
+  $tmpDir = file_directory_path() . '/' . $dir_name . '/';
   mkdir($tmpDir);
   $file = $form_state['values']['file'];
   $file_name = $file->filepath;
