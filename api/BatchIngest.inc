@@ -114,20 +114,20 @@ function batch_creation_form_submit($form, &$form_state) {
   $namespace = $namespace_mappings[$content_model];
   $namespace = preg_replace('/:.*/', '', $namespace);
   $dir_name = "temp" . $user->uid;
-  $tmpDir = file_directory_path() . '/' . $dir_name . '/';
-  mkdir($tmpDir);
+  $tmp_dir = file_directory_path() . '/' . $dir_name . '/';
+  mkdir($tmp_dir);
   $file = $form_state['values']['file'];
   $file_name = $file->filepath;
   $file_list = array();
-  $cmdString = "unzip -q -o -d $tmpDir \"$file_name\"";
+  $cmdString = "unzip -q -o -d $tmp_dir \"$file_name\"";
   system($cmdString, $retVal);
   $dirs = array();
   $doNotAdd = array('.', '..', '__MACOSX');
-  array_push($dirs, $tmpDir);
-  $files = scandir($tmpDir);
+  array_push($dirs, $tmp_dir);
+  $files = scandir($tmp_dir);
   foreach ($files as $file) {
-    if (is_dir("$tmpDir/$file") & !in_array($file, $doNotAdd)) {
-      array_push($dirs, $tmpDir . $file);
+    if (is_dir("$tmp_dir/$file") & !in_array($file, $doNotAdd)) {
+      array_push($dirs, $tmp_dir . $file);
     }
   }
   foreach ($dirs as $directory) {
@@ -163,7 +163,7 @@ function batch_creation_form_submit($form, &$form_state) {
       $batch['operations'][] = array('create_batch_objects', array($label, $content_model, $object_files, $collection_pid, $namespace, $metadata));
     }
   }
-  $batch['operations'][] = array('recursive_directory_delete', array($tmpDir));
+  $batch['operations'][] = array('recursive_directory_delete', array($tmp_dir));
   batch_set($batch);
   batch_process();
 }
