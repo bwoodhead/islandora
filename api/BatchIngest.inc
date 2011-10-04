@@ -79,21 +79,21 @@ function batch_creation_form(&$form_state, $collection_pid, $content_models) {
 function batch_creation_form_validate($form, &$form_state) {
 
   $field_name = 'file-location';
-  if (isset($_FILES['files']) && is_uploaded_file($_FILES['files']['tmp_name'][$fieldName])) {
-    $file = file_save_upload($fieldName);
+  if (isset($_FILES['files']) && is_uploaded_file($_FILES['files']['tmp_name'][$field_name])) {
+    $file = file_save_upload($field_name);
     if ($file->filemime != 'application/zip') {
-      form_set_error($fieldName, 'Input file must be a .zip file');
+      form_set_error($field_name, 'Input file must be a .zip file');
       return;
     }
     if (!$file) {
-      form_set_error($fieldName, 'Error uploading file.');
+      form_set_error($field_name, 'Error uploading file.');
       return;
     }
     $form_state['values']['file'] = $file;
   }
   else {
     // set error
-    form_set_error($fieldName, 'Error uploading file.');
+    form_set_error($field_name, 'Error uploading file.');
     return;
   }
 }
