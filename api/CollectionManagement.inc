@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file 
+ * Collection Management functions
+ */
+
+/**
  * collection creation form 
  * @param array $form_state
  * @param string $parent_collection_pid
@@ -194,9 +199,9 @@ function collection_management_form(&$form_state, $this_collection_pid, $content
   );
   if (user_access('delete entire collections')) {
     $form['delete_collection'] = array(
-      '#title' => "Permanently Delete $collection_name",
+      '#title' => "Permanently Delete " . check_plain($collection_name),
       '#type' => 'fieldset',
-      '#description' => t("Clicking this button will delete all objects within $collection_name. <br /> <strong>This action cannot be undone.</strong>"),
+      '#description' => t("Clicking this button will delete all objects within @collection_name. <br /> <strong>This action cannot be undone.</strong>", array('@collection_name' => check_plain($collection_name))),
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
     );
@@ -214,7 +219,7 @@ function collection_management_form(&$form_state, $this_collection_pid, $content
       '#id' => 'delete_collection',
     );
   }
-  return($form);
+  return $form;
 }
 
 /**
@@ -316,7 +321,7 @@ function collection_management_form_submit($form, &$form_state) {
       if ($count > 1) {
         $s = 's';
       }
-      drupal_set_message("$count collection model$s removed");
+      drupal_set_message(t("@count collection model @s removed", array('@count' => $count, '@s' => $s)));
     }
   }
 
@@ -360,7 +365,7 @@ function collection_management_form_submit($form, &$form_state) {
       $item->add_relationship('hasModel', $new_content_model, FEDORA_MODEL_URI);
       $count++;
     }
-    drupal_set_message("$current_content_model changed to $new_content_model on $count objects");
+    drupal_set_message(t("@current_content_model changed to @new_content_model on @count objects", array('@current_content_model' => $current_content_model, '@new_content_model' => $new_content_model, '@count' => $count)));
   }
 
   if ($form_state['clicked_button']['#id'] == 'delete_collection') {
