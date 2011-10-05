@@ -20,7 +20,7 @@
  *
  * Datastreams which don't have this element are assumed to be at version 0.
  */
-function fedora_repository_solution_packs_page() {
+function digital_repository_solution_packs_page() {
   $enabled_solution_packs = module_invoke_all('required_fedora_objects');
   $output = '';
   foreach ($enabled_solution_packs as $solution_pack_module => $solution_pack_info) {
@@ -35,7 +35,7 @@ function fedora_repository_solution_packs_page() {
           break;
       }
     }
-    $output .= drupal_get_form('fedora_repository_solution_pack_form_' . $solution_pack_module, $solution_pack_module, $solution_pack_name, $objects);
+    $output .= drupal_get_form('digital_repository_solution_pack_form_' . $solution_pack_module, $solution_pack_module, $solution_pack_name, $objects);
   }
 
   return $output;
@@ -45,7 +45,7 @@ function fedora_repository_solution_packs_page() {
  * Check for installed objects and add a 'Update' or 'Install' button if some objects are missing.
  * @param array $solution_pack
  */
-function fedora_repository_solution_pack_form(&$form_state, $solution_pack_module, $solution_pack_name, $objects = array()) {
+function digital_repository_solution_pack_form(&$form_state, $solution_pack_module, $solution_pack_name, $objects = array()) {
   // Check each object to see if it is in the repository.
   module_load_include('inc', 'digital_repository', 'api/fedora_item');
   global $base_path;
@@ -111,8 +111,8 @@ function fedora_repository_solution_pack_form(&$form_state, $solution_pack_modul
               }
               if (isset($ds['dsversion'])) {
                 // Check if the datastream is versioned and needs updating.
-                $installed_version = fedora_repository_get_islandora_datastream_version($item, $ds['dsid']);
-                $available_version = fedora_repository_get_islandora_datastream_version(NULL, NULL, $ds['datastream_file']);
+                $installed_version = digital_repository_get_islandora_datastream_version($item, $ds['dsid']);
+                $available_version = digital_repository_get_islandora_datastream_version(NULL, NULL, $ds['datastream_file']);
                 if ($available_version > $installed_version) {
                   $needs_update = TRUE;
                   $object_status = 'Out of date';
@@ -151,25 +151,25 @@ function fedora_repository_solution_pack_form(&$form_state, $solution_pack_modul
   );
 
   $form['#submit'] = array(
-    'fedora_repository_solution_pack_form_submit',
+    'digital_repository_solution_pack_form_submit',
   );
   return $form;
 }
 
-function fedora_repository_solution_pack_form_submit($form, &$form_state) {
+function digital_repository_solution_pack_form_submit($form, &$form_state) {
   $what = $form_state;
   $module_name = $form_state['values']['solution_pack_module'];
   $solution_pack_info = call_user_func($module_name . '_required_fedora_objects');
   $batch = array(
     'title' => t('Installing / updating solution pack objects'),
-    'file' => drupal_get_path('module', 'fedora_repository') . '/fedora_repository.module',
+    'file' => drupal_get_path('module', 'digital_repository') . '/digital_repository.module',
     'operations' => array(),
   );
 
 
   foreach ($solution_pack_info[$module_name]['objects'] as $object) {
     // Add this object to the batch job queue.
-    $batch['operations'][] = array('fedora_repository_batch_reingest_object', array($object));
+    $batch['operations'][] = array('digital_repository_batch_reingest_object', array($object));
   }
   batch_set($batch);
 }

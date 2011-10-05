@@ -264,7 +264,7 @@ function collection_management_form_submit($form, &$form_state) {
   $collection_pid = $form_state['values']['parent_collection'];
   $policy = CollectionPolicy::loadFromCollection($collection_pid, TRUE);
   if ($form_state['clicked_button']['#id'] == 'create_class') {
-    $module_path = drupal_get_path('module', 'fedora_repository');
+    $module_path = drupal_get_path('module', 'digital_repository');
     $thumbnail = drupal_get_path('module', 'Fedora_Repository') . '/images/Crystal_Clear_filesystem_folder_grey.png';
     $new_collection_pid = $form_state['values']['new_collection_pid'];
     $new_collection_label = $form_state['values']['collection_name'];
@@ -350,7 +350,7 @@ function collection_management_form_submit($form, &$form_state) {
     $query = htmlentities(urlencode($query));
     $content = '';
 
-    $url = variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch');
+    $url = variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch');
     $url .= "?type=tuples&flush=TRUE&format=csv&limit=$limit&offset=$offset&lang=itql&stream=on&query=" . $query;
     $content .= do_curl($url);
     $results = explode("\n", $content);
@@ -375,7 +375,7 @@ function collection_management_form_submit($form, &$form_state) {
     $batch = array(
       'title' => "Deleting Objects from  $name",
       'operations' => array(),
-      'file' => drupal_get_path('module', 'fedora_repository') . '/CollectionManagement.inc',
+      'file' => drupal_get_path('module', 'digital_repository') . '/CollectionManagement.inc',
     );
 
 

@@ -1070,7 +1070,7 @@ class ContentModel extends XMLDatastream {
 
       $method = $ingest_form->getElementsByTagName('form_builder_method')->item(0);
       $module = $method->getAttribute('module');
-      $path = drupal_get_path('module', !empty($module) ? $module : 'fedora_repository') . '/' . $method->getAttribute('file');
+      $path = drupal_get_path('module', !empty($module) ? $module : 'digital_repository') . '/' . $method->getAttribute('file');
       if (!file_exists($path)) {
         self::$errors[] = 'Build Ingest Form: file \'' . $path . '\' does not exist.';
       }
@@ -1110,7 +1110,7 @@ class ContentModel extends XMLDatastream {
       if ($method->length > 0 && $method->item(0)->getAttribute('dsid') == $dsid) {
         $method = $method->item(0);
         $module = $method->getAttribute('module');
-        $path = drupal_get_path('module', !empty($module) ? $module : 'fedora_repository') . '/' . $method->getAttribute('file');
+        $path = drupal_get_path('module', !empty($module) ? $module : 'digital_repository') . '/' . $method->getAttribute('file');
         if (!file_exists($path)) {
           self::$errors[] = 'Build Edit Metadata Form: file  \'' . $path . '\' does not exist.';
         }
@@ -1153,7 +1153,7 @@ class ContentModel extends XMLDatastream {
       if ($method->length > 0) {
         $method = $method->item(0);
         $module = $method->getAttribute('module');
-        $path = drupal_get_path('module', !empty($module) ? $module : 'fedora_repository') . '/' . $method->getAttribute('file');
+        $path = drupal_get_path('module', !empty($module) ? $module : 'digital_repository') . '/' . $method->getAttribute('file');
         if (!file_exists($path)) {
           self::$errors[] = 'Handle Edit Metadata Form: file \'' . $path . '\' does not exist.';
         }
@@ -1198,7 +1198,7 @@ class ContentModel extends XMLDatastream {
       $method = $this->xml->getElementsByTagName('content_model')->item(0)->getElementsByTagName('edit_metadata_method');
       if ($method->length > 0) {
         $method = $method->item(0);
-        $ret = array('module' => $method->getAttribute('module') == '' ? 'fedora_repository' : $method->getAttribute('module'),
+        $ret = array('module' => $method->getAttribute('module') == '' ? 'digital_repository' : $method->getAttribute('module'),
           'file' => $method->getAttribute('file'),
           'class' => $method->getAttribute('class'),
           'method' => $method->getAttribute('method'),
@@ -1282,7 +1282,7 @@ class ContentModel extends XMLDatastream {
           }
         }
         $module = $addMethod->getAttribute('module');
-        $path = drupal_get_path('module', !empty($module) ? $module : 'fedora_repository') . '/' . $addMethod->getAttribute('file');
+        $path = drupal_get_path('module', !empty($module) ? $module : 'digital_repository') . '/' . $addMethod->getAttribute('file');
         if (!file_exists($path)) {
           self::$errors[] = 'Execute Add Datastream Methods: file \'' . $path . '\' does not exist.';
         }
@@ -1351,9 +1351,9 @@ class ContentModel extends XMLDatastream {
 
               if (!$preview || isset($param_array['preview'])) {
                 $module = $method->getAttribute('module');
-                $path = drupal_get_path('module', !empty($module) ? $module : 'fedora_repository') . '/' . $method->getAttribute('file');
+                $path = drupal_get_path('module', !empty($module) ? $module : 'digital_repository') . '/' . $method->getAttribute('file');
 
-                if (!file_exists($path) || substr_compare($path, 'fedora_repository/', -strlen('fedora_repository/'), strlen('fedora_repository/')) === 0) {
+                if (!file_exists($path) || substr_compare($path, 'digital_repository/', -strlen('digital_repository/'), strlen('digital_repository/')) === 0) {
                   self::$errors[] = 'Execute Ingest Rules: file \'' . $path . '\' does not exist.';
                   $ret = FALSE;
                 }
@@ -1399,7 +1399,7 @@ class ContentModel extends XMLDatastream {
     if ($this->validate()) {
       $method = $this->xml->getElementsByTagName('ingest_form')->item(0)->getElementsByTagName('form_builder_method')->item(0);
       $module = $method->getAttribute('module');
-      $path = drupal_get_path('module', !empty($module) ? $module : 'fedora_repository') . '/' . $method->getAttribute('file');
+      $path = drupal_get_path('module', !empty($module) ? $module : 'digital_repository') . '/' . $method->getAttribute('file');
       if (!file_exists($path)) {
         self::$errors[] = 'Execute Form Handler: file \'' . $path . '\' does not exist.';
       }
@@ -1469,7 +1469,7 @@ class ContentModel extends XMLDatastream {
             for ($j = 0; $j < $dispMethods->length; $j++) {
               $method = $dispMethods->item($j);
               $module = $method->getAttribute('module');
-              $path = drupal_get_path('module', !empty($module) ? $module : 'fedora_repository') . '/' . $method->getAttribute('file');
+              $path = drupal_get_path('module', !empty($module) ? $module : 'digital_repository') . '/' . $method->getAttribute('file');
               if (!file_exists($path)) {
                 self::$errors[] = 'Execute Form Handler: file \'' . $path . '\' does not exist.';
               }
@@ -1588,7 +1588,7 @@ class ContentModel extends XMLDatastream {
       $ret = array();
       $dispMethods = $ds->getElementsByTagName('display_method');
       for ($i = 0; $i < $dispMethods->length; $i++) {
-        $ret[] = array('module' => $dispMethods->item($i)->getAttribute('module') == '' ? 'fedora_repository' : $dispMethods->item($i)->getAttribute('module'),
+        $ret[] = array('module' => $dispMethods->item($i)->getAttribute('module') == '' ? 'digital_repository' : $dispMethods->item($i)->getAttribute('module'),
           'file' => $dispMethods->item($i)->getAttribute('file'),
           'class' => $dispMethods->item($i)->getAttribute('class'),
           'method' => $dispMethods->item($i)->getAttribute('method'),
@@ -1694,7 +1694,7 @@ class ContentModel extends XMLDatastream {
       $found = FALSE;
       $dispMethods = $ds->getElementsByTagName('display_method');
       for ($i = 0; !$found && $i < $dispMethods->length; $i++) {
-        if ($module == ($dispMethods->item($i)->getAttribute('module') == '' ? 'fedora_repository' : $dispMethods->item($i)->getAttribute('module')) &&
+        if ($module == ($dispMethods->item($i)->getAttribute('module') == '' ? 'digital_repository' : $dispMethods->item($i)->getAttribute('module')) &&
             $file == $dispMethods->item($i)->getAttribute('file') &&
             $class == $dispMethods->item($i)->getAttribute('class') &&
             $method == $dispMethods->item($i)->getAttribute('method')) {
@@ -1732,7 +1732,7 @@ class ContentModel extends XMLDatastream {
       $found = FALSE;
       $dispMethods = $ds->getElementsByTagName('display_method');
       for ($i = 0; !$found && $i < $dispMethods->length; $i++) {
-        if ($module == ($dispMethods->item($i)->getAttribute('module') == '' ? 'fedora_repository' : $dispMethods->item($i)->getAttribute('module') == '') &&
+        if ($module == ($dispMethods->item($i)->getAttribute('module') == '' ? 'digital_repository' : $dispMethods->item($i)->getAttribute('module') == '') &&
             $file == $dispMethods->item($i)->getAttribute('file') &&
             $class == $dispMethods->item($i)->getAttribute('class') &&
             $method == $dispMethods->item($i)->getAttribute('method')) {
@@ -1785,7 +1785,7 @@ class ContentModel extends XMLDatastream {
     if (($ds = $this->getDSModel($ds)) !== FALSE) {
       $addDsMethod = $ds->getElementsByTagName('add_datastream_method');
       if ($addDsMethod !== FALSE && $addDsMethod->length > 0) {
-        $ret = array('module' => $addDsMethod->item(0)->getAttribute('module') == '' ? 'fedora_repository' : $addDsMethod->item(0)->getAttribute('module'),
+        $ret = array('module' => $addDsMethod->item(0)->getAttribute('module') == '' ? 'digital_repository' : $addDsMethod->item(0)->getAttribute('module'),
           'file' => $addDsMethod->item(0)->getAttribute('file'),
           'class' => $addDsMethod->item(0)->getAttribute('class'),
           'method' => $addDsMethod->item(0)->getAttribute('method'),
@@ -1936,7 +1936,7 @@ class ContentModel extends XMLDatastream {
       $methods = $rule->getElementsByTagName('ingest_methods')->item(0)->getElementsByTagName('ingest_method');
       $found = FALSE;
       for ($i = 0; $found === FALSE && $i < $methods->length; $i++) {
-        if (($methods->item($i)->getAttribute('module') == '' ? 'fedora_repository' : $methods->item($i)->getAttribute('module')) == $module &&
+        if (($methods->item($i)->getAttribute('module') == '' ? 'digital_repository' : $methods->item($i)->getAttribute('module')) == $module &&
             $methods->item($i)->getAttribute('file') == $file &&
             $methods->item($i)->getAttribute('class') == $class &&
             $methods->item($i)->getAttribute('method') == $method) {
@@ -1989,7 +1989,7 @@ class ContentModel extends XMLDatastream {
       $methodsEl = $rule->getElementsByTagName('ingest_methods')->item(0);
       $methods = $methodsEl->getElementsByTagName('ingest_method');
       for ($i = 0; !$found && $i < $methods->length; $i++) {
-        if (( trim($methods->item($i)->getAttribute('module')) == $module || (trim($methods->item($i)->getAttribute('module')) == '' && $module == 'fedora_repository')) && trim($methods->item($i)->getAttribute('file')) == $file && trim($methods->item($i)->getAttribute('class')) == $class && trim($methods->item($i)->getAttribute('method')) == $method) {
+        if (( trim($methods->item($i)->getAttribute('module')) == $module || (trim($methods->item($i)->getAttribute('module')) == '' && $module == 'digital_repository')) && trim($methods->item($i)->getAttribute('file')) == $file && trim($methods->item($i)->getAttribute('class')) == $class && trim($methods->item($i)->getAttribute('method')) == $method) {
           $found = $methods->item($i);
         }
       }
@@ -2077,7 +2077,7 @@ class ContentModel extends XMLDatastream {
 
         $methods = $rules->item($i)->getElementsByTagName('ingest_methods')->item(0)->getElementsByTagName('ingest_method');
         for ($j = 0; $j < $methods->length; $j++) {
-          $method = array('module' => $methods->item($j)->getAttribute('module') == '' ? 'fedora_repository' : $methods->item($j)->getAttribute('module'),
+          $method = array('module' => $methods->item($j)->getAttribute('module') == '' ? 'digital_repository' : $methods->item($j)->getAttribute('module'),
             'file' => $methods->item($j)->getAttribute('file'),
             'class' => $methods->item($j)->getAttribute('class'),
             'method' => $methods->item($j)->getAttribute('method'),
@@ -2157,7 +2157,7 @@ class ContentModel extends XMLDatastream {
     $ret = FALSE;
     if ($this->validate()) {
       $method = $this->xml->getElementsByTagName('ingest_form')->item(0)->getElementsByTagName('form_builder_method')->item(0);
-      $ret = array('module' => ($method->getAttribute('module') == '' ? 'fedora_repository' : $method->getAttribute('module')),
+      $ret = array('module' => ($method->getAttribute('module') == '' ? 'digital_repository' : $method->getAttribute('module')),
         'file' => $method->getAttribute('file'),
         'class' => $method->getAttribute('class'),
         'method' => $method->getAttribute('method'),

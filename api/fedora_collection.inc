@@ -7,7 +7,7 @@
 module_load_include('inc', 'digital_repository', 'api/CollectionClass');
 module_load_include('inc', 'digital_repository', 'api/fedora_item');
 module_load_include('inc', 'digital_repository', 'api/fedora_utils');
-module_load_include('module', 'fedora_repository');
+module_load_include('module', 'digital_repository');
 
 /**
  * Exports a fedora collection object and all of its children in a format
@@ -71,7 +71,7 @@ function get_related_items_as_xml($collection_pid, $relationship = array('isMemb
   module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
 
   global $user;
-  if (!fedora_repository_access(OBJECTHELPER :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
+  if (!digital_repository_access(OBJECTHELPER :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
     drupal_set_message(t("You do not have access to Fedora objects within the attempted namespace or access to Fedora denied."), 'error');
     return array();
   }
@@ -111,7 +111,7 @@ function get_related_items_as_xml($collection_pid, $relationship = array('isMemb
 
 
   $content = '';
-  $url = variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch');
+  $url = variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch');
   $url .= "?type=tuples&flush=TRUE&format=Sparql&limit=$limit&offset=$offset&lang=itql&stream=on&query=" . $query_string;
   $content .= do_curl($url);
 

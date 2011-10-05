@@ -158,7 +158,7 @@ function fedora_available() {
  */
 function risearch_available() {
 
-  $response = do_curl_ext(variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch'));
+  $response = do_curl_ext(variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch'));
   return ($response != NULL) ? ($response[1] == 0): FALSE;
 }
 
@@ -244,7 +244,7 @@ function get_collections_as_option_array() {
                               and $object <info:fedora/fedora-system:def/model#hasModel> <info:fedora/islandora:collectionCModel>
                               and $object <fedora-model:state> <info:fedora/fedora-system:def/model#Active>)
                             order by $title';
-  $url = variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch');
+  $url = variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch');
   $url .= "?type=tuples&flush=TRUE&format=csv&limit=1000&lang=itql&stream=on&query=";
   $content = do_curl($url . htmlentities(urlencode($query)));
   $list = explode("\n", $content);
@@ -286,7 +286,7 @@ function get_content_models_as_option_array() {
           and $object <fedora-model:state> <info:fedora/fedora-system:def/model#Active>)
           order by $title';
 
-  $url = variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch');
+  $url = variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch');
   $url .= "?type=tuples&flush=TRUE&format=csv&limit=1000&lang=itql&stream=on&query=";
   $content = do_curl($url . htmlentities(urlencode($query)));
   $list = explode("\n", $content);

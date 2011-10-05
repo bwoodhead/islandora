@@ -74,7 +74,7 @@ class CollectionClass {
       $offset = 0;
     }
     global $user;
-    if (!fedora_repository_access(OBJECTHELPER :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
+    if (!digital_repository_access(OBJECTHELPER :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
       drupal_set_message(t("You do not have access to Fedora objects within the attempted namespace or access to Fedora denied."), 'error');
       return ' ';
     }
@@ -101,7 +101,7 @@ class CollectionClass {
     $query_string = htmlentities(urlencode($query_string));
 
     $content = '';
-    $url = variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch');
+    $url = variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch');
     $url .= "?type=tuples&flush=TRUE&format=Sparql&limit=$limit&offset=$offset&lang=itql&stream=on&query=" . $query_string;
     $content .= do_curl($url);
 
@@ -353,7 +353,7 @@ class CollectionClass {
         }
       }
       // module_load_include( $phpFile, 'Fedora_Repository', ' ');
-      require_once(drupal_get_path('module', 'fedora_repository') . '/' . $phpFile);
+      require_once(drupal_get_path('module', 'digital_repository') . '/' . $phpFile);
       $thisClass = new $phpClass ();
       $returnValue = $thisClass->$phpMethod($parametersArray, $dsid, $file, $file_ext);
       if (!$returnValue) {
@@ -423,7 +423,7 @@ class CollectionClass {
     $ingest_form = $xml->ingest_form; //should only be one
     $drupal_module = strip_tags($ingest_form->form_builder_method->module->asXML());
     if (empty($drupal_module)) {
-      $drupal_module = 'fedora_repository';
+      $drupal_module = 'digital_repository';
     }
     $phpFile = strip_tags($ingest_form->form_builder_method->file->asXML());
     $phpClass = strip_tags($ingest_form->form_builder_method->class_name->asXML());
@@ -455,7 +455,7 @@ class CollectionClass {
     $connectionHelper = new ConnectionHelper();
     try {
       $soapClient = $connectionHelper->getSoapClient(variable_get('fedora_soap_manage_url', 'http://localhost:8080/fedora/services/management?wsdl'));
-      $pidNameSpace = variable_get('fedora_repository_pid', 'vre:');
+      $pidNameSpace = variable_get('digital_repository_pid', 'vre:');
       $pidNameSpace = substr($pidNameSpace, 0, strpos($pidNameSpace, ":"));
       $params = array(
         'numPIDs' => '',
@@ -528,7 +528,7 @@ class CollectionClass {
     $collection_items = $this->renderCollection($results, $this->pid, NULL, NULL, $page_number);
     $collection_item = new Fedora_Item($this->pid);
     // Check the form post to see if we are in the middle of an ingest operation.
-    $show_ingest_tab = (!empty($_POST['form_id']) && $_POST['form_id'] == 'fedora_repository_ingest_form');
+    $show_ingest_tab = (!empty($_POST['form_id']) && $_POST['form_id'] == 'digital_repository_ingest_form');
     $add_to_collection = $this->getIngestInterface();
 
     $show_batch_tab = TRUE;
@@ -599,7 +599,7 @@ class CollectionClass {
           $allow = fedora_fesl_check_roles($this->pid, 'write');
         }
         if ($allow) {
-          $ingestObject = drupal_get_form('fedora_repository_ingest_form', $this->pid);
+          $ingestObject = drupal_get_form('digital_repository_ingest_form', $this->pid);
         }
       }
     }
@@ -621,7 +621,7 @@ class CollectionClass {
    * @return type
    */
   function renderCollection($content, $pid, $dsId, $collection, $pageNumber = NULL) {
-    $path = drupal_get_path('module', 'fedora_repository');
+    $path = drupal_get_path('module', 'digital_repository');
     global $base_url;
     $collection_pid = $pid; //we will be changing the pid later maybe
     $objectHelper = new ObjectHelper();
@@ -641,7 +641,7 @@ class CollectionClass {
     }
 
     if (!isset($collectionName)) {
-      $collectionName = variable_get('fedora_repository_name', 'Collection');
+      $collectionName = variable_get('digital_repository_name', 'Collection');
     }
     $xslContent = $this->getXslContent($pid, $path);
 

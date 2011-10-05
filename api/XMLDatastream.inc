@@ -168,7 +168,7 @@ abstract class XMLDatastream {
         //$tmpname = substr($this->pid, strpos($this->pid, ':') + 1);
         $tmpname = user_password(10);
         $this->convertFromOldSchema();
-        drupal_add_js("fedora_repository_print_new_schema_$tmpname = function(tagID) {
+        drupal_add_js("digital_repository_print_new_schema_$tmpname = function(tagID) {
         var target = document.getElementById(tagID);
         var content = target.innerHTML;
         var text = '<html><head><title>Title'   +
@@ -179,7 +179,7 @@ abstract class XMLDatastream {
         }", 'inline');
 
         if (user_access('administer site configuration')) {
-          drupal_set_message(t('<span id="new_schema_@tmpname" style="display: none;">@saveXML</span>Warning: XMLDatastream performed conversion of \'@identifier\' from old schema.  Please update the datastream. The new datastream contents are <a href="javascript:fedora_repository_print_new_schema_@tmpname(\'new_schema_\')">here.</a>', 
+          drupal_set_message(t('<span id="new_schema_@tmpname" style="display: none;">@saveXML</span>Warning: XMLDatastream performed conversion of \'@identifier\' from old schema.  Please update the datastream. The new datastream contents are <a href="javascript:digital_repository_print_new_schema_@tmpname(\'new_schema_\')">here.</a>', 
               array( '@tmpname' => check_plain($tmpname), '@saveXML' => check_plain(htmlentities($this->xml->saveXML())), '@identifier' => check_plain($this->getIdentifier()))));
         }
 

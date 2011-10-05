@@ -154,7 +154,7 @@ function batch_creation_form_submit($form, &$form_state) {
   $batch = array(
     'title' => 'Ingesting Objects',
     'operations' => array(),
-    'file' => drupal_get_path('module', 'fedora_repository') . '/BatchIngest.inc',
+    'file' => drupal_get_path('module', 'digital_repository') . '/BatchIngest.inc',
   );
 
 
@@ -231,7 +231,7 @@ function create_batch_objects($label, $content_model, $object_files, $collection
 
 
 function batch_create_dc_from_mods($mods_xml) {
-  $path = drupal_get_path('module', 'fedora_repository');
+  $path = drupal_get_path('module', 'digital_repository');
   module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
   module_load_include('inc', 'digital_repository', 'api/CollectionClass');
 

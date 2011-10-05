@@ -163,7 +163,7 @@
   </xsl:call-template>
    </xsl:variable>
    <xsl:variable name="cleanTitle">
-    <xsl:value-of select="php:functionString('fedora_repository_urlencode_string', $newTitle)"/>
+    <xsl:value-of select="php:functionString('digital_repository_urlencode_string', $newTitle)"/>
   </xsl:variable>
   <xsl:variable name="linkUrl">
    <xsl:choose>

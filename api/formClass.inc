@@ -24,15 +24,15 @@ class formClass {
   function createMenu() {
     $items = array();
 
-    $items['admin/settings/fedora_repository'] = array(
+    $items['admin/settings/digital_repository'] = array(
       'title' => t('Configure Islandora'),
       'description' => t('Enter the Islandora Collection information here'),
       'page callback' => 'drupal_get_form',
-      'page arguments' => array('fedora_repository_admin'),
+      'page arguments' => array('digital_repository_admin'),
       'access arguments' => array('administer site configuration'),
       'type' => MENU_NORMAL_ITEM,
     );
-    $items['admin/settings/fedora_repository/collection'] = array(
+    $items['admin/settings/digital_repository/collection'] = array(
       'title' => t('Collection list'),
       'description' => t('Enter the Islandora collection information here.'),
       'access arguments' => array('administer site configuration'),
@@ -40,18 +40,18 @@ class formClass {
       'weight' => 0,
     );
 
-    $items['admin/settings/fedora_repository/demoobjects'] = array(
+    $items['admin/settings/digital_repository/demoobjects'] = array(
       'title' => t('Solution Packs'),
       'description' => t('Install content models and collections required by installed solution packs.'),
-      'page callback' => 'fedora_repository_solution_packs_page',
+      'page callback' => 'digital_repository_solution_packs_page',
       'access arguments' => array('add fedora datastreams'),
-      'file' => 'fedora_repository.solutionpacks.inc',
+      'file' => 'digital_repository.solutionpacks.inc',
       'type' => MENU_LOCAL_TASK,
     );
 
     $items['islandoracm.xsd'] = array(
       'title' => t('Islandora Content Model XML Schema Definition'),
-      'page callback' => 'fedora_repository_display_schema',
+      'page callback' => 'digital_repository_display_schema',
       'page arguments' => array('islandoracm.xsd'),
       'type' => MENU_CALLBACK,
       'access arguments' => array('view fedora collection'),
@@ -59,7 +59,7 @@ class formClass {
 
     $items['collection_policy.xsd'] = array(
       'title' => t('Islandora Content Model XML Schema Definition'),
-      'page callback' => 'fedora_repository_display_schema',
+      'page callback' => 'digital_repository_display_schema',
       'page arguments' => array('collection_policy.xsd'),
       'type' => MENU_CALLBACK,
       'access arguments' => array('view fedora collection'),
@@ -70,7 +70,7 @@ class formClass {
       'type' => MENU_CALLBACK,
       'access arguments' => array('view fedora collection'),
     );
-    $repository_title = variable_get('fedora_repository_title', 'Digital repository');
+    $repository_title = variable_get('digital_repository_title', 'Digital repository');
     if (trim($repository_title) != '') {
       $respository_title = t($repository_title);
     }
@@ -100,7 +100,7 @@ class formClass {
     
     $items['fedora/repository/editmetadata'] = array(
       'title' => t('Edit metadata'),
-      'page callback' => 'fedora_repository_edit_qdc_page',
+      'page callback' => 'digital_repository_edit_qdc_page',
       // 'page arguments' => array(1),
       //'type' =>  MENU_LOCAL_TASK,
       'type' => MENU_CALLBACK,
@@ -109,21 +109,21 @@ class formClass {
     
     $items['fedora/repository/purgeStream'] = array(
       'title' => t('Purge data stream'),
-      'page callback' => 'fedora_repository_purge_stream',
+      'page callback' => 'digital_repository_purge_stream',
       'type' => MENU_CALLBACK,
       'access arguments' => array('purge objects and datastreams')
     );
     
     $items['fedora/repository/replaceStream'] = array(
       'title' => t('Replace Stream'),
-      'page callback' => 'fedora_repository_replace_stream',
+      'page callback' => 'digital_repository_replace_stream',
       'type' => MENU_CALLBACK,
       'access arguments' => array('add fedora datastreams'),
     );
     
     $items['fedora/repository/purgeObject'] = array(
       'title' => t('Purge object'),
-      'page callback' => 'fedora_repository_purge_object',
+      'page callback' => 'digital_repository_purge_object',
       // 'type' =>  MENU_LOCAL_TASK,
       'type' => MENU_CALLBACK,
       'access arguments' => array('purge objects and datastreams')
@@ -147,21 +147,21 @@ class formClass {
     //new for mnpl******************************************
     $items['fedora/repository/mnpl_advanced_search'] = array(
       'title' => t('Repository advanced search'),
-      'page callback' => 'fedora_repository_mnpl_advanced_search',
+      'page callback' => 'digital_repository_mnpl_advanced_search',
       'type' => MENU_CALLBACK,
       'access arguments' => array('view fedora collection')
     );
     
     $items['fedora/ingestObject'] = array(
       'title' => t('Ingest object'),
-      'page callback' => 'fedora_repository_ingest_object',
+      'page callback' => 'digital_repository_ingest_object',
       'type' => MENU_CALLBACK,
       'access arguments' => array('add fedora datastreams')
     );
 
     $items['fedora/repository/list_terms'] = array(
       'title' => t('List terms'),
-      'page callback' => 'fedora_repository_list_terms',
+      'page callback' => 'digital_repository_list_terms',
       'type' => MENU_CALLBACK,
       'access arguments' => array('view fedora collection')
     );
@@ -170,25 +170,25 @@ class formClass {
     $items['fedora/basket'] = array(
       'title' => t('Fedora Basket'),
       'description' => t('View and download objects added to your basket'),
-      'page callback' => 'fedora_repository_basket',
+      'page callback' => 'digital_repository_basket',
       'access arguments' => array('view fedora collection'),
       'type' => MENU_CALLBACK,
     );
 
     $items['fedora/repository/addToBasket'] = array(
-      'page callback' => 'fedora_repository_add_to_basket',
+      'page callback' => 'digital_repository_add_to_basket',
       'type' => MENU_CALLBACK,
       'access arguments' => array('view fedora collection'),
     );
 
     $items['fedora/repository/removeFromBasket'] = array(
-      'page callback' => 'fedora_repository_remove_from_basket',
+      'page callback' => 'digital_repository_remove_from_basket',
       'type' => MENU_CALLBACK,
       'access arguments' => array('view fedora collection'),
     );
 
     $items['fedora/repository/add_search_results_to_basket'] = array(
-      'page callback' => 'fedora_repository_add_search_results_to_basket',
+      'page callback' => 'digital_repository_add_search_results_to_basket',
       'type' => MENU_CALLBACK,
       'access arguments' => array('view fedora collection'),
     );
@@ -208,18 +208,18 @@ class formClass {
     module_load_include('inc', 'digital_repository', 'api/fedora_utils');
     module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
     $form = array();
-    $form['fedora_repository_name'] = array(
+    $form['digital_repository_name'] = array(
       '#type' => 'textfield',
       '#title' => t('Root Collection Name'),
-      '#default_value' => variable_get('fedora_repository_name', 'Islandora demos collection'),
+      '#default_value' => variable_get('digital_repository_name', 'Islandora demos collection'),
       '#description' => t('The Name of the Root Collection Object'),
       '#required' => TRUE,
       '#weight' => -20
     );
-    $form['fedora_repository_pid'] = array(
+    $form['digital_repository_pid'] = array(
       '#type' => 'textfield',
       '#title' => t('Root Collection PID'),
-      '#default_value' => variable_get('fedora_repository_pid', 'islandora:root'),
+      '#default_value' => variable_get('digital_repository_pid', 'islandora:root'),
       '#description' => t('The PID of the Root Collection Object'),
       '#required' => TRUE,
       '#weight' => -18
@@ -235,10 +235,10 @@ class formClass {
     );
     
 
-    $form['fedora_repository_url'] = array(
+    $form['digital_repository_url'] = array(
       '#type' => 'textfield',
       '#title' => t('Fedora RISearch URL'),
-      '#default_value' => variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch'),
+      '#default_value' => variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch'),
       '#description' => t('The url of the Fedora server'), '#required' => TRUE,
       '#weight' => -14
     );
@@ -296,10 +296,10 @@ class formClass {
         '#weight' => 0
       );
     }
-    $form['fedora_repository_title'] = array(
+    $form['digital_repository_title'] = array(
       '#type' => 'textfield',
       '#title' => t('Digital Repository Title'),
-      '#default_value' => variable_get('fedora_repository_title', 'Digital Repository'),
+      '#default_value' => variable_get('digital_repository_title', 'Digital Repository'),
       '#description' => t('The title displayed when viewing collections and objects in  /fedora/repository. Leave blank to display no title. Note that the menus must be rebuilt after changing this variable.'),
     );
     $form['advanced'] = array(
@@ -507,7 +507,7 @@ class formClass {
       ),
       'submit' => array(
         '#type' => 'submit',
-        '#submit' => array('fedora_repository_ingest_form_submit'),
+        '#submit' => array('digital_repository_ingest_form_submit'),
         '#value' => t('Next')
       ),
     );
@@ -541,7 +541,7 @@ class formClass {
       );
       $form['submit'] = array(
         '#type' => 'submit',
-        '#submit' => array('fedora_repository_ingest_form_submit'),
+        '#submit' => array('digital_repository_ingest_form_submit'),
         '#value' => t('Ingest')
       );
     }

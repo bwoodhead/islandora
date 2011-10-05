@@ -68,7 +68,7 @@ class ObjectHelper {
       return ' ';
     }
 
-    if (!fedora_repository_access(OBJECTHELPER :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
+    if (!digital_repository_access(OBJECTHELPER :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
       drupal_set_message(t("You do not have access Fedora objects within the attempted namespace."), 'error');
       drupal_access_denied();
       return ' ';
@@ -226,7 +226,7 @@ class ObjectHelper {
       drupal_set_message(t('You must specify an object pid and datastream ID.'), 'error');
       return '';
     }
-    if (!fedora_repository_access(ObjectHelper :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
+    if (!digital_repository_access(ObjectHelper :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
       drupal_set_message(t('You do not have the appropriate permissions'), 'error');
       return;
     }
@@ -261,7 +261,7 @@ class ObjectHelper {
       drupal_set_message(t('You must specify an object pid and datastream ID.'), 'error');
       return '';
     }
-    if (!fedora_repository_access(ObjectHelper :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
+    if (!digital_repository_access(ObjectHelper :: $OBJECT_HELPER_VIEW_FEDORA, $pid, $user)) {
       drupal_set_message(t('You do not have the appropriate permissions'), 'error');
       return;
     }
@@ -291,7 +291,7 @@ class ObjectHelper {
    */
   function create_link_for_ds($pid, $dataStreamValue) {
     global $base_url;
-    $path = drupal_get_path('module', 'fedora_repository');
+    $path = drupal_get_path('module', 'digital_repository');
 
     require_once($path . '/api/fedora_item.inc');
     $item = new Fedora_Item($pid);
@@ -358,7 +358,7 @@ class ObjectHelper {
    */
   function getFormattedDC($item) {
     global $base_url;
-    $path = drupal_get_path('module', 'fedora_repository');
+    $path = drupal_get_path('module', 'digital_repository');
     module_load_include('inc', 'digital_repository', 'api/ConnectionHelper');
 
     $dsid = array_key_exists('QDC', $item->get_datastreams_list_as_array()) ? 'QDC' : 'DC';
@@ -407,7 +407,7 @@ class ObjectHelper {
     $ds_list = $item->get_datastreams_list_as_array();
     $output = $this->getFormattedDC($item);
     $dsid = array_key_exists('QDC', $ds_list) ? 'QDC' : 'DC';
-    $path = drupal_get_path('module', 'fedora_repository');
+    $path = drupal_get_path('module', 'digital_repository');
 
     //$baseUrl=substr($baseUrl, 0, (strpos($baseUrl, "/")-1));
     if (user_access(ObjectHelper :: $EDIT_FEDORA_METADATA)) {
@@ -444,7 +444,7 @@ class ObjectHelper {
     module_load_include('inc', 'digital_repository', 'api/fedora_item');
     module_load_include('inc', 'digital_repository', 'api/ContentModel');
 
-    $path = drupal_get_path('module', 'fedora_repository');
+    $path = drupal_get_path('module', 'digital_repository');
     $dataStreamBody = '';
     $fedoraItem = new Fedora_Item($object_pid);
 
@@ -592,7 +592,7 @@ class ObjectHelper {
    * @param type $pid
    * @return type
    */
-  function fedora_repository_access($op, $pid) {
+  function digital_repository_access($op, $pid) {
     global $user;
 
     $returnValue = FALSE;
@@ -601,7 +601,7 @@ class ObjectHelper {
       $namespaceAccess = TRUE;
     }
     if ($pid == NULL) {
-      $pid = variable_get('fedora_repository_pid', 'islandora:root');
+      $pid = variable_get('digital_repository_pid', 'islandora:root');
     }
     $nameSpaceAllowed = explode(" ", variable_get('fedora_pids_allowed', 'default: demo: changeme: islandora: ilives: islandora-book: books: newspapers: '));
     $pos = NULL;
@@ -631,7 +631,7 @@ class ObjectHelper {
    * @param $content String
    */
   function parseContent($content, $pid, $dsId, $collection, $pageNumber = NULL) {
-    $path = drupal_get_path('module', 'fedora_repository');
+    $path = drupal_get_path('module', 'digital_repository');
     global $base_url;
     $collection_pid = $pid; //we will be changing the pid later maybe
     //module_load_include('php', ''Fedora_Repository'', 'ObjectHelper');
@@ -833,7 +833,7 @@ class ObjectHelper {
       and $o <dc:description> $desc
       and $o <mulgara:is> <info:fedora/' . $pid . '>';
 
-    $url = variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch');
+    $url = variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch');
     $url .= "?type=tuples&flush=TRUE&format=csv&limit=1000&lang=itql&stream=on&query=";
     $content = do_curl($url . htmlentities(urlencode($query_string)));
 
@@ -867,7 +867,7 @@ class ObjectHelper {
     }
     $query_string = substr($query_string, 0, -3) . ' )';
 
-    $url = variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch');
+    $url = variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch');
     $url .= "?type=tuples&flush=TRUE&format=csv&limit=1000&lang=itql&stream=on&query=";
     $url .= htmlentities(urlencode($query_string));
     $content = $this->doCurl($url);
@@ -923,7 +923,7 @@ class ObjectHelper {
     module_load_include('inc', 'digital_repository', 'api/fedora_utils');
     // Before executing the query, we hve a base case of accessing the top-level collection
     global $base_url;
-    if ($pid == variable_get('fedora_repository_pid', 'islandora:root')) {
+    if ($pid == variable_get('digital_repository_pid', 'islandora:root')) {
       $breadcrumbs[] = l(t('Digital repository'), 'fedora/repository');
       $breadcrumbs[] = l(t('Home'), $base_url);
     }
@@ -939,7 +939,7 @@ class ObjectHelper {
                                order by $title';
       $query_string = htmlentities(urlencode($query_string));
 
-      $url = variable_get('fedora_repository_url', 'http://localhost:8080/fedora/risearch');
+      $url = variable_get('digital_repository_url', 'http://localhost:8080/fedora/risearch');
       $url .= "?type=tuples&flush=TRUE&format=CSV&limit=1&offset=0&lang=itql&stream=on&query=" . $query_string;
 
       $result = preg_split('/[\r\n]+/', do_curl($url));
@@ -949,7 +949,7 @@ class ObjectHelper {
         $parent = preg_replace('/^info:fedora\//', '', $matches[0]);
 
         $breadcrumbs[] = l($matches[1], 'fedora/repository/' . $pid);
-        if ($parent == variable_get('fedora_repository_pid', 'islandora:root')) {
+        if ($parent == variable_get('digital_repository_pid', 'islandora:root')) {
           $breadcrumbs[] = l(t('Digital repository'), 'fedora/repository');
           $breadcrumbs[] = l(t('Home'), $base_url);
         }

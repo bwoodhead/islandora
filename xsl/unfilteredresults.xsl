@@ -146,7 +146,7 @@
     </xsl:variable>
 
     <xsl:variable name="CLEANTITLE">
-      <xsl:value-of select="php:functionString('fedora_repository_urlencode_string', $DCTITLE)"/>
+      <xsl:value-of select="php:functionString('digital_repository_urlencode_string', $DCTITLE)"/>
     </xsl:variable>
     <tr>
       <td valign="top">
