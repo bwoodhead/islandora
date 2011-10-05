@@ -88,7 +88,7 @@ class Fedora_Item {
     $original_path = $datastream_file;
     // Temporarily move file to a web-accessible location.
     file_copy($datastream_file, file_directory_path());
-    $datastream_url = drupal_urlencode($datastream_file);
+    $datastream_url = url($datastream_file);
     $url = file_create_url($datastream_url);
 
     $return_value = $this->add_datastream_from_url($url, $datastream_id, $datastream_label, $datastream_mimetype, $controlGroup, $logMessage);
@@ -287,7 +287,7 @@ class Fedora_Item {
   static function find_objects_by_pattern($pattern = '*', $field = 'pid', $max_results = 100, $resultFields = array()) {
     module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
 
-    $pattern = drupal_urlencode($pattern);
+    $pattern = url($pattern);
     $done = FALSE;
     $cursor = 0;
     $session_token = '';
@@ -507,14 +507,14 @@ class Fedora_Item {
           }
           $ds_list[$ds->ID]['label'] = $ds->label;
           $ds_list[$ds->ID]['MIMEType'] = $ds->MIMEType;
-          $ds_list[$ds->ID]['URL'] = $this->url() . '/' . $ds->ID . '/' . drupal_urlencode($ds->label);
+          $ds_list[$ds->ID]['URL'] = $this->url() . '/' . $ds->ID . '/' . url($ds->label);
         }
       }
       else {
         $ds = $this->datastreams_list->datastreamDef;
         $ds_list[$ds->ID]['label'] = $ds->label;
         $ds_list[$ds->ID]['MIMEType'] = $ds->MIMEType;
-        $ds_list[$ds->ID]['URL'] = $this->url() . '/' . $ds->ID . '/' . drupal_urlencode($ds->label);
+        $ds_list[$ds->ID]['URL'] = $this->url() . '/' . $ds->ID . '/' . url($ds->label);
       }
     }
 
@@ -617,7 +617,7 @@ class Fedora_Item {
       foreach ($relationships as $rel) {
         if (empty($rel['subject']) || empty($rel['predicate']) || empty($rel['object']) || $rel['subject'] != 'info:fedora/' . $this->pid) {
           // drupal_set_message should use parameterized variables, not interpolated.
-          drupal_set_message(t("Error with relationship format: @subject - @predicate - @object", array( '@subject' =>  check_plain($rel['subject']), '@predicate' =>  check_plain($rel['predicate']), '@object' =>  check_plain($rel['object']), )), "error");
+          drupal_set_message(t("Error with relationship format: @subject - @predicate - @object", array( '@subject' =>  check_plain($rel['subject']), '@predicate' =>  check_plain($rel['predicate']), '@object' =>  check_plain($rel['object']))), "error");
           return FALSE;
         }
       }
@@ -672,7 +672,7 @@ class Fedora_Item {
    */
   function url() {
     global $base_url;
-    return $base_url . '/fedora/repository/' . $this->pid . (!empty($this->objectProfile) ? '/-/' . drupal_urlencode($this->objectProfile->objLabel) : '');
+    return $base_url . '/fedora/repository/' . $this->pid . (!empty($this->objectProfile) ? '/-/' . url($this->objectProfile->objLabel) : '');
   }
 
   /**
