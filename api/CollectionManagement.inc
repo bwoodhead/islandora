@@ -199,7 +199,7 @@ function collection_management_form(&$form_state, $this_collection_pid, $content
   );
   if (user_access('delete entire collections')) {
     $form['delete_collection'] = array(
-      '#title' => "Permanently Delete " . check_plain($collection_name),
+      '#title' => t("Permanently Delete @collection_name", array('@collection_name' => check_plain($collection_name))),
       '#type' => 'fieldset',
       '#description' => t("Clicking this button will delete all objects within @collection_name. <br /> <strong>This action cannot be undone.</strong>", array('@collection_name' => check_plain($collection_name))),
       '#collapsible' => TRUE,
@@ -208,7 +208,7 @@ function collection_management_form(&$form_state, $this_collection_pid, $content
     $form['delete_collection']['confirm'] = array(
       '#title' => "Are you sure?",
       '#type' => 'fieldset',
-      '#description' => t('<strong>Clicking the delete button will permanantly remove all objects from this collection. <br />  <strong>This action cannot be undone.</strong> '),
+      '#description' => t('<strong>Clicking the delete button will permanantly remove all objects from this collection. <br />  <strong>This action cannot be undone.</strong>'),
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
     );
@@ -304,7 +304,7 @@ function collection_management_form_submit($form, &$form_state) {
     $cp_content_model = $form_state['values']['content_model_to_add'];
     $policy->addModel(ContentModel::loadFromModel($cp_content_model), $cp_namespace);
     $policy->saveToFedora();
-    drupal_set_message("Collection model successfully added");
+    drupal_set_message(t("Collection model successfully added"));
   }
 
   if ($form_state['clicked_button']['#id'] == 'remove_cm') {
