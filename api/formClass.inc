@@ -344,7 +344,7 @@ class formClass {
     $form['advanced']['module']['export_area'] = array(
       '#type' => 'textfield',
       '#title' => t('Export area'),
-      '#default_value' => variable_get('export_area', file_directory_path() . '/fedora_export_area'),
+      '#default_value' => variable_get('export_area', file_default_scheme() . '/fedora_export_area'),
       '#description' => t("Path to the export area. It must be accessible by druapl (i.e. apache user)."),
       '#required' => TRUE,
     );
