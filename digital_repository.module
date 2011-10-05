@@ -1102,7 +1102,7 @@ function repository_service($pid = NULL, $servicePid = NULL, $serviceMethod = NU
  * @param type $keys
  * @return array 
  */
-function digital_repository_search($op = 'search', $keys = NULL) {
+function digital_repository_search_execute($op = 'search', $keys = NULL) {
   module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
   module_load_include('inc', 'digital_repository', 'api/fedora_utils');
 
@@ -1400,7 +1400,7 @@ function theme_digital_repository_mnpl_advanced_search_form($form) {
  * @param type $startPage
  * @return type
  */
-function digital_repository_mnpl_advanced_search($query, $startPage = 1) {
+function digital_repository_mnpl_advanced_search_execute($query, $startPage = 1) {
   module_load_include('inc', 'digital_repository', 'api/SearchClass');
   $searchClass = new SearchClass();
   $retVal = $searchClass->custom_search($query, $startPage);
@@ -1726,8 +1726,8 @@ function digital_repository_expand_time($element) {
 // default value is present it will override value
   if (empty($element['#default_value'])) {
     $element['#value'] = array(
-      'hour' => intval(format_date(time(), 'custom', 'h')),
-      'minute' => intval(format_date(time(), 'custom', 'i')),
+      'hour' => intval(format_date(REQUEST_TIME(), 'custom', 'h')),
+      'minute' => intval(format_date(REQUEST_TIME(), 'custom', 'i')),
     );
   }
 
@@ -2070,7 +2070,7 @@ function digital_repository_remove_from_basket($pid) {
  */
 function theme_add_to_basket_link($pid, $type = 'object') {
   $object = t($type);
-  $path = drupal_urlencode($pid);
+  $path = url($pid);
 
   $save = "export_big.png";
   $saved = "exported_big.png";
