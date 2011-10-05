@@ -420,7 +420,7 @@ class formClass {
     try {
       $object = $client->__soapCall('ModifyDatastreamByValue', array($params));
     } catch (exception $e) {
-      drupal_set_message(t("Error updating metadata") . " " . $e->getMessage(), 'error');
+      drupal_set_message(t("Error updating metadata @message", array('@message' => check_plain($e->getMessage()))), 'error');
     }
   }
 
@@ -474,11 +474,11 @@ class formClass {
    */
   function createQDCIngestFormPageOne($collection_pid, $collection_label, array &$form_state) {
     if (($collection_policy = CollectionPolicy::loadFromCollection($collection_pid)) === FALSE) {
-      drupal_set_message(t('Unable to load collection policy \'' . $collection_pid . '\'.'));
+      drupal_set_message(t('Unable to load collection policy \'@pid\'.', array("@pid" => check_plain($collection_pid))));
       return FALSE;
     }
     if (!($content_models = $collection_policy->getContentModels())) {
-      drupal_set_message(t('No content models associated with this collection: !collection_label. Please contact your administrator.', array('!collection_label' => $collection_label)), 'error');
+      drupal_set_message(t('No content models associated with this collection: @collection_label. Please contact your administrator.', array('@collection_label' => check_plain($collection_label))), 'error');
       return FALSE;
     }
     $potential_models = array();
@@ -498,7 +498,7 @@ class formClass {
           '#title' => t('Content models available'),
           '#options' => $potential_models,
           '#default_value' => $selected_model,
-          '#description' => t('Content models define datastream composition, relationships between this and other content models, and the mandatory behaviors associated with each digital object.<br /> Additional information may be found <a href="https://wiki.duraspace.org/display/FEDORACREATE/Content+Models+Overview">here.</a> '),
+          '#description' => t('Content models define datastream composition, relationships between this and other content models, and the mandatory behaviors associated with each digital object.<br /> Additional information may be found <a href="https://wiki.duraspace.org/display/FEDORACREATE/Content+Models+Overview">here.</a>'),
         ),
       ),
       'collection_pid' => array(
@@ -532,7 +532,7 @@ class formClass {
       if ($form === FALSE) {
         drupal_set_message(t("Error Building Ingest Form."), 'error');
         foreach (ContentModel::$errors as $error) {
-          drupal_set_message($error, 'error');
+          drupal_set_message(check_plain($error), 'error');
         }
       }
       $form['collection_pid'] = array(
