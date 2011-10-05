@@ -1,12 +1,14 @@
 ; $Id$
-name = Digital Repository
+name = Islandora Digital Repository
 dependencies[] = imageapi
 dependencies[] = tabs
 dependencies[] = islandora_content_model_forms
-description = Shows a list of items in a fedora collection.
+description = Shows a list of items in a digital collection.
 package = Islandora
 version = 11.3.0
 core = 7.x
+files[] = digital_repository.install
+files[] = digital_repository.module
 files[] = api/BatchIngest.inc
 files[] = api/XMLDatastream.inc
 files[] = api/CollectionClass.inc
