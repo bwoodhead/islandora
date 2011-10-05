@@ -187,7 +187,7 @@ class CollectionClass {
             array(
               '@pid' => check_plain($pid), 
               '@dsid' => check_plain($dsid)
-            )
+            ),
          ), 
         'error');
     return NULL;
