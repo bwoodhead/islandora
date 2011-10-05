@@ -131,7 +131,7 @@ class CollectionClass {
     try {
       $xml = new SimpleXMLElement($stream);
     } catch (Exception $e) {
-      drupal_set_message(t('Error getting relationship element from policy stream !e', array('!e' => $e->getMessage())), 'error');
+      drupal_set_message(t('Error getting relationship element from policy stream @e', array('@e' => check_plain($e->getMessage()))), 'error');
       return;
     }
     $relationship = $xml->relationship[0];
@@ -172,7 +172,7 @@ class CollectionClass {
     try {
       $xml = new SimpleXMLElement($stream);
     } catch (Exception $e) {
-      drupal_set_message(t('Error getting PID namespace !e', array('!e' => $e->getMessage())), 'error');
+      drupal_set_message(t('Error getting PID namespace @e', array('@e' => check_plain($e->getMessage()))), 'error');
       return;
     }
     foreach ($xml->contentmodels->contentmodel as $contentModel) {
@@ -182,7 +182,7 @@ class CollectionClass {
         return strip_tags($contentModel->pid_namespace->asXML());
       }
     }
-    drupal_set_message(t('Error getting PID namespace! using collection pid of !pid and content model of !dsid', array('!pid' => $pid, '!dsid' => $dsid)), 'error');
+    drupal_set_message(t('Error getting PID namespace! using collection pid of @pid and content model of @dsid', array('@pid' => check_plain($pid), '@dsid' => check_plain($dsid))), 'error');
     return NULL;
   }
 
@@ -199,7 +199,7 @@ class CollectionClass {
       $xml = new SimpleXMLElement($collection_stream);
     } catch (Exception $e) {
       if ($showError) {
-        drupal_set_message(t("!e", array('!e' => $e->getMessage())), 'error');
+        drupal_set_message(t("@e", array('@e' => check_plain($e->getMessage()))), 'error');
       }
       return NULL;
     }
@@ -239,7 +239,7 @@ class CollectionClass {
     try {
       $xml = new SimpleXMLElement($stream);
     } catch (Exception $e) {
-      drupal_set_message(t('Error Getting FormHandler: !e', array('!e' => $e->getMessage())), 'error');
+      drupal_set_message(t('Error Getting FormHandler: @e', array('@e' => check_plain($e->getMessage()))), 'error');
       return NULL;
     }
     $formHandler = $xml->ingest_form;
@@ -257,7 +257,7 @@ class CollectionClass {
       return $returnArray;
     }
 
-    drupal_set_message(t("Error getting form handler. No handler found for !pid - !dsid", array('!pid' => $pid, '!dsid' => $dsid)), 'error');
+    drupal_set_message(t("Error getting form handler. No handler found for @pid - @dsid", array('@pid' => check_plain($pid), '@dsid' => check_plain($dsid))), 'error');
     return NULL;
   }
 
@@ -272,7 +272,7 @@ class CollectionClass {
     try {
       $xml = new SimpleXMLElement($stream);
     } catch (Exception $e) {
-      drupal_set_message(t('Error getting content model stream for mime types !e', array('!e' => $e->getMessage())), 'error');
+      drupal_set_message(t('Error getting content model stream for mime types @e', array('@e' => check_plain($e->getMessage()))), 'error');
       return;
     }
     foreach ($xml->mimetypes->type as $type) {
@@ -302,7 +302,7 @@ class CollectionClass {
     try {
       $xml = new SimpleXMLElement($stream);
     } catch (Exception $e) {
-      drupal_set_message(t('Error getting content model stream !e', array('!e' => $e->getMessage())), 'error');
+      drupal_set_message(t('Error getting content model stream @e', array('@e' => check_plain($e->getMessage()))), 'error');
       return FALSE;
     }
     foreach ($xml->ingest_rules->rule as $rule) {
@@ -343,7 +343,7 @@ class CollectionClass {
       $thisClass = new $phpClass ();
       $returnValue = $thisClass->$phpMethod($parametersArray, $dsid, $file, $file_ext);
       if (!$returnValue) {
-        drupal_set_message('Error! Failed running content model method !m !rv', array('!m' => $phpMethod, '!rv' => $returnValue));
+        drupal_set_message(t('Error! Failed running content model method @m @rv', array('@m' => check_plain($phpMethod), '@rv' => check_plain($returnValue))));
         return FALSE;
       }
     }
@@ -365,7 +365,7 @@ class CollectionClass {
     try {
       $xml = new SimpleXMLElement($stream);
     } catch (Exception $e) {
-      drupal_set_message(t('Error getting ingest form stream !e', array('!e' => $e->getMessage())), 'error');
+      drupal_set_message(t('Error getting ingest form stream @e', array('@e' => check_plain($e->getMessage()))), 'error');
       return FALSE;
     }
     $docRoot = $_SERVER['DOCUMENT_ROOT'];
@@ -451,7 +451,7 @@ class CollectionClass {
             $params
           ));
     } catch (exception $e) {
-      drupal_set_message(t('Error getting Next PID: !e', array('!e' => $e->getMessage())), 'error');
+      drupal_set_message(t('Error getting Next PID: @e', array('@e' => check_plain($e->getMessage()))), 'error');
       return FALSE;
     }
     $pid = implode(get_object_vars($object));
@@ -463,7 +463,7 @@ class CollectionClass {
     module_load_include('inc', 'fedora_repository', 'plugins/PersonalCollectionClass');
     $personalCollectionClass = new PersonalCollectionClass();
     if (!$personalCollectionClass->createCollection($user, $pid, $soapClient)) {
-      drupal_set_message("Did not create a personal collection object for !u", array('!u' => $user->name));
+      drupal_set_message(t("Did not create a personal collection object for @u", array('@u' => check_plain($user->name))));
       return FALSE; //creation failed don't save the collection pid in drupal db
     }
     user_save($user, $personal_collection_pid);
@@ -526,12 +526,11 @@ class CollectionClass {
     if (!$show_ingest_tab) {
       $view_selected = TRUE;
     }
-    if(!$collection_items){
+    if (!$collection_items) {
       $view_selected = FALSE;
       $add_selected = TRUE;
     }
     $view_selected = !$show_ingest_tab;
-
 
     $tabset['view_tab'] = array(
       '#type' => 'tabpage',
@@ -662,7 +661,7 @@ class CollectionClass {
             throw new Exception("Invalid XML.");
           }
         } catch (Exception $e) {
-          drupal_set_message(t('!e', array('!e' => $e->getMessage())), 'error');
+          drupal_set_message(t('@e', array('@e' => check_plain($e->getMessage()))), 'error');
           return '';
         }
       }
