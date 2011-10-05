@@ -818,7 +818,7 @@ function digital_repository_edit_qdc_form_submit($form, &$form_state) {
  * drupal hook
  * creates a new permission than can be assigned to roles
  */
-function digital_repository_perm() {
+function digital_repository_permission() {
   module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
   return array(
     OBJECTHELPER::$OBJECT_HELPER_VIEW_FEDORA,
