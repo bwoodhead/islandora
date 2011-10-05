@@ -187,9 +187,9 @@ class CollectionClass {
             array(
               '@pid' => check_plain($pid), 
               '@dsid' => check_plain($dsid)
-            ),
-         ), 
-        'error');
+            )
+         )
+        , 'error');
     return NULL;
   }
 
@@ -264,7 +264,14 @@ class CollectionClass {
       return $returnArray;
     }
 
-    drupal_set_message(t("Error getting form handler. No handler found for @pid - @dsid", array('@pid' => check_plain($pid), '@dsid' => check_plain($dsid))), 'error');
+    drupal_set_message(
+        t("Error getting form handler. No handler found for @pid - @dsid", 
+            array(
+              '@pid' => check_plain($pid), 
+              '@dsid' => check_plain($dsid)
+            )
+        ), 
+        'error');
     return NULL;
   }
 
