@@ -22,7 +22,7 @@ class SearchClass {
    * @param type $dismax
    * @return type
    */
-  function solr_search($query, $startPage=1, $fq = NULL, $dismax = NULL) {
+  function solr_search_execute($query, $startPage=1, $fq = NULL, $dismax = NULL) {
     $solrFile = trim(variable_get('islandora_solr_search_block_handler_file', 'plugins/SolrResults.inc'));
 
     // Don't let us bust out of fedora_repository modules directory when looking for a handler
@@ -244,7 +244,7 @@ class SearchClass {
     if ($startTerm == NULL) {
       $startTerm = "";
     }
-    $startTerm = drupal_urlencode($startTerm);
+    $startTerm = url($startTerm);
     $query = 'operation=browseIndex&startTerm=' . $startTerm . '&fieldName=' . $fieldName . '&termPageSize=20&indexName=' . $indexName . '&restXslt=copyXml&resultPageXslt=copyXml';
     // $query=drupal_urlencode($query);
     $query = '?' . $query;
@@ -268,7 +268,7 @@ class SearchClass {
    * @param type $numberOfHistPerPage
    * @return type
    */
-  function custom_search($query, $startPage=1, $xslt= '/xsl/advanced_search_results.xsl', $numberOfHistPerPage = 50) {
+  function custom_search_execute($query, $startPage=1, $xslt= '/xsl/advanced_search_results.xsl', $numberOfHistPerPage = 50) {
     module_load_include('inc', 'fedora_repository', 'ObjectHelper');
     module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
 
