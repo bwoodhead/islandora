@@ -182,7 +182,14 @@ class CollectionClass {
         return strip_tags($contentModel->pid_namespace->asXML());
       }
     }
-    drupal_set_message(t('Error getting PID namespace! using collection pid of @pid and content model of @dsid', array('@pid' => check_plain($pid), '@dsid' => check_plain($dsid))), 'error');
+    drupal_set_message(
+        t('Error getting PID namespace! using collection pid of @pid and content model of @dsid', 
+            array(
+              '@pid' => check_plain($pid), 
+              '@dsid' => check_plain($dsid)
+            )
+         ), 
+        'error');
     return NULL;
   }
 

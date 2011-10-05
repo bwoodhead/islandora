@@ -456,7 +456,7 @@ class CollectionPolicy extends XMLDatastream {
             }
           }
         }
-        cache_set('collection_policy_search_terms-' . $this->pid, $ret, 'cache', time() + 3600);
+        cache_set('collection_policy_search_terms-' . $this->pid, $ret, 'cache', REQUEST_TIME() + 3600);
       }
     }
     return $ret;
