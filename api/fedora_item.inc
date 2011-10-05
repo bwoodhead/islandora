@@ -617,7 +617,14 @@ class Fedora_Item {
       foreach ($relationships as $rel) {
         if (empty($rel['subject']) || empty($rel['predicate']) || empty($rel['object']) || $rel['subject'] != 'info:fedora/' . $this->pid) {
           // drupal_set_message should use parameterized variables, not interpolated.
-          drupal_set_message(t("Error with relationship format: @subject - @predicate - @object", array( '@subject' =>  check_plain($rel['subject']), '@predicate' =>  check_plain($rel['predicate']), '@object' =>  check_plain($rel['object']))), "error");
+          drupal_set_message(
+              t("Error with relationship format: @subject - @predicate - @object", 
+                  array( 
+                    '@subject' =>  check_plain($rel['subject']), '@predicate' =>  check_plain($rel['predicate']), '@object' =>  check_plain($rel['object'])
+                )
+              )
+              , "error"
+          );
           return FALSE;
         }
       }
