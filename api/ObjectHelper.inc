@@ -331,9 +331,8 @@ class ObjectHelper {
     $label = str_replace("_", " ", $label);
     $mimeType = $dataStreamValue->MIMEType;
 
-    $view = url('<a href="' . $base_url . '/fedora/repository/' . drupal_urlencode($pid) . '/' . $id . '/' . drupal_urlencode($label) .
-        '" target="_blank" >' . t('View') . '</a>');
-    $action = url("$base_url/fedora/repository/object_download/" . drupal_urlencode($pid) . '/' . $id . '/' . drupal_urlencode(preg_replace('/\//i', '${1}_', $label))); // Necessary to handle the case of Datastream labels that contain slashes. Ugh.
+    $view = l(t('View'), $base_url . '/fedora/repository/' . $pid . '/' . $id . '/' . $label, array('target' => '_blank'));
+    //$action = "$base_url/fedora/repository/object_download/" . drupal_urlencode($pid) . '/' . $id . '/' . drupal_urlencode(preg_replace('/\//i', '${1}_', $label)); // Necessary to handle the case of Datastream labels that contain slashes. Ugh.
     //$downloadVersion = '<form method="GET" action="' . $action . '"><input type="submit" value="' . t('Download') . '"></form>';
     if (user_access(ObjectHelper :: $EDIT_FEDORA_METADATA)) {
       $versions = $item->get_datastream_history($id);
