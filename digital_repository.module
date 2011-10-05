@@ -28,7 +28,7 @@ function digital_repository_menu() {
  *
  * @param type $path
  * @param type $arg
- * @return type 
+ * @return type
  */
 function digital_repository_help($path, $arg) {
   switch ($path) {
@@ -43,7 +43,7 @@ function digital_repository_help($path, $arg) {
  * fedora repository purge object
  * @param type $pid
  * @param type $name
- * @return type 
+ * @return type
  */
 function digital_repository_purge_object($pid = NULL, $name = NULL) {
   if (!user_access('purge objects and datastreams')) {
@@ -69,7 +69,7 @@ function digital_repository_purge_object($pid = NULL, $name = NULL) {
  * @param type $pid
  * @param type $collection
  * @param type $pageNumber
- * @return type 
+ * @return type
  */
 function digital_repository_collection_view($pid = NULL, $collection = NULL, $pageNumber = NULL) {
   module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
@@ -99,7 +99,7 @@ function digital_repository_collection_view($pid = NULL, $collection = NULL, $pa
  * @param type $collection_pid
  * @param type $collection_label
  * @param type $content_model
- * @return type 
+ * @return type
  */
 function digital_repository_ingest_object($collection_pid=NULL, $collection_label = NULL, $content_model = NULL) {
   module_load_include('inc', 'digital_repository', 'api/fedora_utils');
@@ -193,7 +193,7 @@ function digital_repository_ingest_form_submit(array $form, array &$form_state) 
  * fedora repository ingest form validate
  * @param type $form
  * @param type $form_state
- * @return type 
+ * @return type
  */
 function digital_repository_ingest_form_validate($form, &$form_state) {
 //only validate the form if the submit button was pressed (other buttons may be used for AHAH
@@ -264,7 +264,7 @@ function digital_repository_ingest_form_validate($form, &$form_state) {
  * @param type $collection_pid
  * @param type $collection_label
  * @param type $content_model
- * @return type 
+ * @return type
  */
 function digital_repository_ingest_form(&$form_state, $collection_pid, $collection_label = NULL, $content_model = NULL) {
   module_load_include('inc', 'digital_repository', 'api/formClass');
@@ -284,7 +284,7 @@ function digital_repository_ingest_form(&$form_state, $collection_pid, $collecti
  * @param type $form_state
  * @param type $pid
  * @param type $referrer
- * @return type 
+ * @return type
  */
 function digital_repository_purge_object_form(&$form_state, $pid, $referrer = NULL) {
   global $base_url;
@@ -333,7 +333,7 @@ function digital_repository_purge_object_form(&$form_state, $pid, $referrer = NU
  * add stream
  * @param type $collection_pid
  * @param type $collectionName
- * @return type 
+ * @return type
  */
 function add_stream($collection_pid=NULL, $collectionName=NULL) {
   module_load_include('inc', 'digital_repository', 'api/fedora_utils');
@@ -359,7 +359,7 @@ function add_stream($collection_pid=NULL, $collectionName=NULL) {
  * @global type $base_url
  * @param type $form
  * @param type $form_state
- * @return type 
+ * @return type
  */
 function add_stream_form_submit($form, &$form_state) {
   global $base_url;
@@ -409,7 +409,7 @@ function add_stream_form_submit($form, &$form_state) {
  * add stream form
  * @param type $form_state
  * @param type $pid
- * @return type 
+ * @return type
  */
 function add_stream_form(&$form_state, $pid) {
   module_load_include('inc', 'digital_repository', 'api/formClass');
@@ -421,7 +421,7 @@ function add_stream_form(&$form_state, $pid) {
  * add stream form validate
  * @param type $form
  * @param type $form_state
- * @return type 
+ * @return type
  */
 function add_stream_form_validate($form, &$form_state) {
   if ($form_state['clicked_button']['#value'] == 'OK') {
@@ -467,7 +467,7 @@ function add_stream_form_validate($form, &$form_state) {
  * @param type $pid
  * @param type $dsId
  * @param type $name
- * @return type 
+ * @return type
  */
 function digital_repository_purge_stream($pid = NULL, $dsId = NULL, $name = NULL) {
   module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
@@ -492,7 +492,7 @@ function digital_repository_purge_stream($pid = NULL, $dsId = NULL, $name = NULL
  * fedora repository purge object form submit
  * @param type $form
  * @param type $form_state
- * @return type 
+ * @return type
  */
 function digital_repository_purge_object_form_submit($form, &$form_state) {
   module_load_include('inc', 'digital_repository', 'api/ConnectionHelper');
@@ -541,7 +541,7 @@ function digital_repository_purge_object_form_submit($form, &$form_state) {
  * @param type $form_state
  * @param type $pid
  * @param type $dsId
- * @return type 
+ * @return type
  */
 function digital_repository_purge_stream_form(&$form_state, $pid, $dsId) {
   $form['pid'] = array(
@@ -587,7 +587,7 @@ function digital_repository_purge_stream_form_submit($form, &$form_state) {
  * @param type $dsId
  * @param type $dsLabel
  * @param type $collectionName
- * @return type 
+ * @return type
  */
 function digital_repository_replace_stream($pid, $dsId, $dsLabel, $collectionName = NULL) {
   if ($pid == NULL || $dsId == NULL) {
@@ -605,7 +605,7 @@ function digital_repository_replace_stream($pid, $dsId, $dsLabel, $collectionNam
  * @param type $pid
  * @param type $dsId
  * @param type $dsLabel
- * @return type 
+ * @return type
  */
 function digital_repository_replace_stream_form(&$form_state, $pid, $dsId, $dsLabel) {
 //module_load_module_load_include('hp', ''Fedora_Repository'', 'config', 'digital_repository', '');
@@ -619,7 +619,7 @@ function digital_repository_replace_stream_form(&$form_state, $pid, $dsId, $dsLa
  * fedora repository replace stream form validate
  * @param type $form
  * @param type $form_state
- * @return type 
+ * @return type
  */
 function digital_repository_replace_stream_form_validate($form, &$form_state) {
 // If a file was uploaded, process it.
@@ -690,7 +690,7 @@ function digital_repository_replace_stream_form_submit($form, &$form_state) {
  * @global type $user
  * @param type $pid
  * @param type $dsId
- * @return type 
+ * @return type
  */
 function digital_repository_edit_qdc_page($pid = NULL, $dsId = NULL) {
   module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
@@ -714,7 +714,7 @@ function digital_repository_edit_qdc_page($pid = NULL, $dsId = NULL) {
  * @param type $form_state
  * @param type $pid
  * @param type $dsId
- * @return type 
+ * @return type
  */
 function digital_repository_edit_qdc_form(&$form_state, $pid, $dsId = NULL) {
   module_load_include('inc', 'digital_repository', 'api/ContentModel');
@@ -841,7 +841,7 @@ function digital_repository_perm() {
  * @param type $op
  * @param type $node
  * @param type $account
- * @return type 
+ * @return type
  */
 function digital_repository_access($op, $node, $account) {
   module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
@@ -895,7 +895,7 @@ function makeObject($pid, $dsID) {
  * @param type $collection
  * @param type $page_number
  * @param type $limit
- * @return type 
+ * @return type
  */
 function digital_repository_get_items($pid = NULL, $dsId = NULL, $collection = NULL, $page_number = NULL, $limit = NULL) {
   module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
@@ -1004,7 +1004,7 @@ function digital_repository_get_items($pid = NULL, $dsId = NULL, $collection = N
 /**
  * fedora repository urlencode string
  * @param type $str
- * @return type 
+ * @return type
  */
 function digital_repository_urlencode_string($str) {
   return htmlentities($str);
@@ -1019,7 +1019,7 @@ function digital_repository_urlencode_string($str) {
  * @param type $dsId
  * @param type $label
  * @param type $version
- * @return type 
+ * @return type
  */
 function fedora_object_as_attachment($pid, $dsId, $label=NULL, $version=NULL) {
   global $user;
@@ -1040,7 +1040,7 @@ function fedora_object_as_attachment($pid, $dsId, $label=NULL, $version=NULL) {
  * @param type $dsId
  * @param type $collection
  * @param type $pageNumber
- * @return type 
+ * @return type
  */
 function repository_page($pid = NULL, $dsId = NULL, $collection = NULL, $pageNumber = NULL) {
 //do security check at digital_repository_get_items function as it has to be called there in case
@@ -1054,7 +1054,7 @@ function repository_page($pid = NULL, $dsId = NULL, $collection = NULL, $pageNum
  * @param type $pid
  * @param type $servicePid
  * @param type $serviceMethod
- * @return type 
+ * @return type
  */
 function repository_service($pid = NULL, $servicePid = NULL, $serviceMethod = NULL) {
   module_load_include('inc', 'digital_repository', 'api/fedora_item');
@@ -1337,7 +1337,7 @@ function digital_repository_search_validate($form, &$form_state) {
 
 /**
  * fedora repository theme
- * @return type 
+ * @return type
  */
 function digital_repository_theme() {
   return array(
@@ -1365,7 +1365,7 @@ function digital_repository_theme() {
  * @param type $field
  * @param type $startTerm
  * @param type $displayName
- * @return type 
+ * @return type
  */
 function digital_repository_list_terms($field, $startTerm = NULL, $displayName = NULL) {
   module_load_include('inc', 'digital_repository', 'api/SearchClass');
@@ -1375,7 +1375,7 @@ function digital_repository_list_terms($field, $startTerm = NULL, $displayName =
 
 /**
  * fedora repository mnpl advanced search form
- * @return type 
+ * @return type
  */
 function digital_repository_mnpl_advanced_search_form() {
   module_load_include('inc', 'digital_repository', 'api/SearchClass');
@@ -1386,7 +1386,7 @@ function digital_repository_mnpl_advanced_search_form() {
 /**
  * theme fedora repository mnpl advanced search form 
  * @param type $form
- * @return type 
+ * @return type
  */
 function theme_digital_repository_mnpl_advanced_search_form($form) {
   module_load_include('inc', 'digital_repository', 'api/SearchClass');
@@ -1398,7 +1398,7 @@ function theme_digital_repository_mnpl_advanced_search_form($form) {
  * fedora repository mnpl advanced search
  * @param type $query
  * @param type $startPage
- * @return type 
+ * @return type
  */
 function digital_repository_mnpl_advanced_search($query, $startPage = 1) {
   module_load_include('inc', 'digital_repository', 'api/SearchClass');
@@ -1432,7 +1432,7 @@ function digital_repository_mnpl_advanced_search_form_submit($form, &$form_state
 
 /**
  * fedora repository install demo page
- * @return type 
+ * @return type
  */
 function digital_repository_install_demos_page() {
   $output = drupal_get_form('digital_repository_demo_objects_form');
@@ -1665,7 +1665,7 @@ function digital_repository_demo_objects_form_submit($form, &$form_state) {
 
 /**
  * fedora repository required fedora objects
- * @return type 
+ * @return type
  */
 function digital_repository_required_fedora_objects() {
 // array( 'path-to-foxml-file', 'pid', 'dsid', 'path-to-datastream-file', int dsversion, boolean required)
@@ -1762,7 +1762,7 @@ function digital_repository_expand_time($element) {
 /**
  * fedora repository time
  * @param type $element
- * @return type 
+ * @return type
  */
 function digital_repository_time($element) {
   $output = '<div class="container-inline">' . $element['#children'] . '</div>';
@@ -1772,7 +1772,7 @@ function digital_repository_time($element) {
 /**
  * theme fedora repository time
  * @param type $element
- * @return type 
+ * @return type
  */
 function theme_digital_repository_time($element) {
   $output = '<div class="container-inline">' . $element['#children'] . '</div>';
@@ -1808,7 +1808,7 @@ function digital_repository_remove_item_from_basket($pid) {
 
 /**
  * fedora repository basket
- * @return type 
+ * @return type
  */
 function digital_repository_basket() {
   $pids = _digital_repository_get_basket_pids();
@@ -1915,7 +1915,7 @@ function digital_repository_basket_form_validate($form, &$form_state) {
  * @global type $user
  * @param type $form
  * @param type $form_state
- * @return type 
+ * @return type
  */
 function digital_repository_basket_form_submit($form, &$form_state) {
   if ($form_state['values']['op'] == $form_state['values']['remove_submit']) {
@@ -1986,7 +1986,7 @@ function digital_repository_basket_form_submit($form, &$form_state) {
 /**
  * Get all pids saved to the basket. 
  *
- * @return type 
+ * @return type
  */
 function _digital_repository_get_basket_pids() {
 
@@ -2049,7 +2049,7 @@ function digital_repository_add_to_basket($pid, $warn = TRUE, $searchResultsFlag
 /**
  * fedora repository remove from basket
  * @param type $pid
- * @return type 
+ * @return type
  */
 function digital_repository_remove_from_basket($pid) {
   if (isset($_SESSION['basket']['unprocessed'][$pid])) {
@@ -2066,7 +2066,7 @@ function digital_repository_remove_from_basket($pid) {
  * theme add to basket link
  * @param type $pid
  * @param type $type
- * @return type 
+ * @return type
  */
 function theme_add_to_basket_link($pid, $type = 'object') {
   $object = t($type);
@@ -2093,7 +2093,7 @@ function theme_add_to_basket_link($pid, $type = 'object') {
  * is added to basket
  * @param type $pid
  * @param type $account
- * @return type 
+ * @return type
  */
 function _is_added_to_basket($pid, $account = NULL) {
   return isset($_SESSION['basket']['unprocessed'][$pid]) || isset($_SESSION['basket']['processed'][$pid]);
@@ -2103,7 +2103,7 @@ function _is_added_to_basket($pid, $account = NULL) {
 /**
  * fedora repository display schema
  * @param type $file
- * @return type 
+ * @return type
  */
 function digital_repository_display_schema($file) {
   $path = drupal_get_path('module', 'digital_repository');
@@ -2120,7 +2120,7 @@ function digital_repository_display_schema($file) {
  * fedora repository batch reingest object
  * @param type $object
  * @param type $context
- * @return type 
+ * @return type
  */
 function digital_repository_batch_reingest_object($object, &$context) {
   module_load_include('inc', 'digital_repository', 'api/fedora_item');

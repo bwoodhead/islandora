@@ -27,7 +27,7 @@ class RelsExt {
 
   /**
    * modified 
-   * @return type 
+   * @return type
    */
   function modified() {
     return!(empty(array_diff($this->relsExtArray, $this->originalRelsExtArray)) &&

@@ -20,7 +20,7 @@ class SearchClass {
    * @param type $startPage
    * @param type $fq
    * @param type $dismax
-   * @return type 
+   * @return type
    */
   function solr_search($query, $startPage=1, $fq = NULL, $dismax = NULL) {
     $solrFile = trim(variable_get('islandora_solr_search_block_handler_file', 'plugins/SolrResults.inc'));
@@ -47,7 +47,7 @@ class SearchClass {
    * @param type $repeat
    * @param type $pathToSearchTerms
    * @param type $query
-   * @return type 
+   * @return type
    */
   function build_solr_search_form($repeat = NULL, $pathToSearchTerms = NULL, $query = NULL) {
     $types = $this->get_search_terms_array(NULL, 'solrSearchTerms.xml');
@@ -152,7 +152,7 @@ class SearchClass {
   /**
    * theme solr search form ??
    * @param type $form
-   * @return type 
+   * @return type
    */
   function theme_solr_search_form($form) {
     if (!isset($repeat)) {
@@ -182,7 +182,7 @@ class SearchClass {
    * @param type $showForm
    * @param type $orderBy
    * @param type $userArray
-   * @return type 
+   * @return type
    */
   function quickSearch($type, $query, $showForm = 1, $orderBy = 0, & $userArray) {
     module_load_include('inc', 'fedora_repository', 'ObjectHelper');
@@ -234,7 +234,7 @@ class SearchClass {
    * @param type $fieldName
    * @param type $startTerm
    * @param type $displayName
-   * @return type 
+   * @return type
    */
   function getTerms($fieldName, $startTerm, $displayName = NULL) {
     module_load_include('inc', 'fedora_repository', 'ObjectHelper');
@@ -266,7 +266,7 @@ class SearchClass {
    * @param type $startPage
    * @param type $xslt
    * @param type $numberOfHistPerPage
-   * @return type 
+   * @return type
    */
   function custom_search($query, $startPage=1, $xslt= '/xsl/advanced_search_results.xsl', $numberOfHistPerPage = 50) {
     module_load_include('inc', 'fedora_repository', 'ObjectHelper');
@@ -306,7 +306,7 @@ class SearchClass {
    * @param type $resultData
    * @param type $pathToXSLT
    * @param type $displayName
-   * @return type 
+   * @return type
    */
   function applySpecifiedXSLT($resultData, $pathToXSLT, $displayName = NULL) {
     $proc = NULL;
@@ -422,7 +422,7 @@ class SearchClass {
    * xslt for islandscholar these xslt functions can probably be pulled into one
    * @param type $resultData
    * @param type $orderBy
-   * @return type 
+   * @return type
    */
   function applyXSLT($resultData, $orderBy = 0) {
     $path = drupal_get_path('module', 'Fedora_Repository');
@@ -471,7 +471,7 @@ class SearchClass {
    * theme advanced search form ??
    * @param type $form
    * @param type $repeat
-   * @return type 
+   * @return type
    */
   function theme_advanced_search_form($form, $repeat=NULL) {
     if (!isset($repeat)) {
@@ -586,7 +586,7 @@ class SearchClass {
    * get search terms array 
    * @param type $path
    * @param string $file
-   * @return type 
+   * @return type
    */
   function get_search_terms_array($path = NULL, $file = NULL) {
     if (!isset($path)) {

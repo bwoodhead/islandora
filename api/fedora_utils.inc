@@ -16,7 +16,7 @@ if (!function_exists('str_getcsv')) {
    * @param type $enclosure
    * @param type $escape
    * @param type $eol
-   * @return type 
+   * @return type
    */
   function str_getcsv($input, $delimiter=',', $enclosure='"', $escape=NULL, $eol=NULL) {
     $temp = fopen("php://memory", "rw");
@@ -144,7 +144,7 @@ function do_curl_ext($url, $return_to_variable = 1, $number_of_post_vars = 0, $p
 
 /**
  * Fedora available
- * @return type 
+ * @return type
  */
 function fedora_available() {
 
@@ -154,7 +154,7 @@ function fedora_available() {
 
 /**
  * Resource index search available
- * @return type 
+ * @return type
  */
 function risearch_available() {
 

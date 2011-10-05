@@ -1580,7 +1580,7 @@ class ContentModel extends XMLDatastream {
   /**
    * getDisplayMethods ??
    * @param type $ds
-   * @return type 
+   * @return type
    */
   public function getDisplayMethods($ds) {
     $ret = FALSE;
@@ -1647,7 +1647,7 @@ class ContentModel extends XMLDatastream {
   /**
    * displayInFieldset ??
    * @param type $dsid
-   * @return type 
+   * @return type
    */
   public function displayInFieldset($dsid) {
     $ret = FALSE;
@@ -1778,7 +1778,7 @@ class ContentModel extends XMLDatastream {
   /**
    * getAddDsMethod ??
    * @param type $ds
-   * @return type 
+   * @return type
    */
   public function getAddDsMethod($ds) {
     $ret = FALSE;
@@ -1800,7 +1800,7 @@ class ContentModel extends XMLDatastream {
   /**
    * getIngestRule ??
    * @param type $rule_id
-   * @return type 
+   * @return type
    */
   public function getIngestRule($rule_id) {
     $ret = FALSE;
@@ -2023,7 +2023,7 @@ class ContentModel extends XMLDatastream {
   /**
    * removeIngestRule ??
    * @param type $rule_id
-   * @return type 
+   * @return type
    */
   public function removeIngestRule($rule_id) {
     $ret = FALSE;
@@ -2042,7 +2042,7 @@ class ContentModel extends XMLDatastream {
    * @param type $method
    * @param type $dsid
    * @param type $modified_files_ext
-   * @return type 
+   * @return type
    */
   public function addIngestRule($applies_to, $module, $file, $class, $method, $dsid, $modified_files_ext) {
     $ret = FALSE;
@@ -2060,7 +2060,7 @@ class ContentModel extends XMLDatastream {
 
   /**
    * getIngestRules ??
-   * @return type 
+   * @return type
    */
   public function getIngestRules() {
     $ret = FALSE;
@@ -2104,7 +2104,7 @@ class ContentModel extends XMLDatastream {
 
   /**
    * getIngestFormAttributes ??
-   * @return type 
+   * @return type
    */
   public function getIngestFormAttributes() {
     $ret = FALSE;
@@ -2151,7 +2151,7 @@ class ContentModel extends XMLDatastream {
 
   /**
    * getIngestFormBuilderMethod
-   * @return type 
+   * @return type
    */
   public function getIngestFormBuilderMethod() {
     $ret = FALSE;

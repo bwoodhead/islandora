@@ -74,7 +74,7 @@ class Dublin_Core {
   /**
    * Serialize this object to XML and return it.
    * @param type $with_preamble
-   * @return type 
+   * @return type
    */
   function as_xml($with_preamble = FALSE) {
     $dc_xml = new DomDocument();

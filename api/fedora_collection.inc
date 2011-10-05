@@ -15,7 +15,7 @@ module_load_include('module', 'fedora_repository');
  * @param type $collection_pid
  * @param type $relationship
  * @param type $format
- * @return type 
+ * @return type
  */
 function export_collection($collection_pid, $relationship = 'isMemberOfCollection', $format = 'info:fedora/fedora-system:FOXML-1.1') {
   $collection_item = new Fedora_Item($collection_pid);
@@ -127,7 +127,7 @@ function get_related_items_as_xml($collection_pid, $relationship = array('isMemb
  * @param type $active_objects_only
  * @param type $cmodel
  * @param type $orderby
- * @return type 
+ * @return type
  */
 function get_related_items_as_array($collection_pid, $relationship = 'isMemberOfCollection', $limit = 10000, $offset = 0, $active_objects_only = TRUE, $cmodel = NULL, $orderby = '$title') {
   $content = get_related_items_as_xml($collection_pid, $relationship, $limit, $offset, $active_objects_only, $cmodel, $orderby);

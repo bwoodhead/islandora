@@ -24,7 +24,7 @@ class SecurityClass {
    * canIngestHere ??
    * @global type $user
    * @param type $collection_pid
-   * @return type 
+   * @return type
    */
   function canIngestHere($collection_pid) {
     global $user;
@@ -61,7 +61,7 @@ class SecurityClass {
   /**
    * parses our simple xacml policies checking for users or roles that are allowed to ingest
    * @param type $policyStream
-   * @return type 
+   * @return type
    */
   function getAllowedUsersAndRoles($policyStream) {
     $allowedRoles = array();

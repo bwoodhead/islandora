@@ -19,7 +19,7 @@ define('ATOMZip_11', 'info:fedora/fedora-system:ATOMZip-1.1');
  * @param type $foxml_dir
  * @param type $ob_dir
  * @param type $log
- * @return type 
+ * @return type
  */
 function export_to_export_area($pid, $foxml_dir, $ob_dir, &$log = array()) {
   if (!$paths = export_objects_for_pid($pid, $ob_dir, $log)) {
@@ -82,7 +82,7 @@ function export_objects_for_pid($pid, $dir, &$log) {
  * @param type $log
  * @param type $format
  * @param type $remove_islandora
- * @return type 
+ * @return type
  */
 function export_foxml_for_pid($pid, $dir, $paths, &$log, $format = FOXML_11, $remove_islandora = FALSE) {
   module_load_include('inc', 'fedora_repository', 'ObjectHelper');
@@ -199,7 +199,7 @@ function export_foxml_for_pid($pid, $dir, $paths, &$log, $format = FOXML_11, $re
 /**
  * Get file extension
  * @param type $mimeType
- * @return type 
+ * @return type
  */
 function get_file_extension($mime_type) {
   return substr(strstr($mime_type, '/'), 1);
@@ -210,7 +210,7 @@ function get_file_extension($mime_type) {
  * @param type $msg
  * @param type $severity
  * @param type $sep
- * @return type 
+ * @return type
  */
 function log_line($msg, $severity = 'info', $sep = "\t") {
   return date("Y-m-d H:i:s") . $sep . ucfirst($severity) . $sep . $msg;

@@ -580,7 +580,7 @@ class CollectionPolicy extends XMLDatastream {
    * addModel ??
    * @param ContentModel $cm
    * @param type $namespace
-   * @return type 
+   * @return type
    */
   function addModel($cm, $namespace) {
     $ret = FALSE;
@@ -609,7 +609,7 @@ class CollectionPolicy extends XMLDatastream {
 
   /**
    * getName ??
-   * @return type 
+   * @return type
    */
   function getName() {
     $ret = FALSE;

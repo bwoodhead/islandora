@@ -29,7 +29,7 @@ class TagSet {
 
   /**
    * Load ??
-   * @return type 
+   * @return type
    */
   function load() {
     $tagsxml = isset($this->item->datastreams[$this->tagsDSID]) ? $this->item->get_datastream_dissemination($this->tagsDSID) : NULL;

@@ -51,7 +51,7 @@ class ObjectHelper {
    * @param type $filePath
    * @param type $version
    * @param type $forceSoap
-   * @return type 
+   * @return type
    */
   function makeObject($pid, $dsID, $asAttachment = FALSE, $label = NULL, $filePath=FALSE, $version=NULL, $forceSoap = TRUE) {
     global $user;
@@ -203,7 +203,7 @@ class ObjectHelper {
    *
    * @param type $pid
    * @param type $query
-   * @return type 
+   * @return type
    */
   function getCollectionInfo($pid, $query = NULL) {
     module_load_include('inc', 'fedora_repository', 'CollectionClass');
@@ -218,7 +218,7 @@ class ObjectHelper {
    * @global type $user
    * @param type $pid
    * @param type $dsID
-   * @return type 
+   * @return type
    */
   function getMimeType($pid, $dsID) {
     global $user;
@@ -253,7 +253,7 @@ class ObjectHelper {
    * @global type $user
    * @param type $pid
    * @param type $dsID
-   * @return type 
+   * @return type
    */
   function getDatastreamInfo($pid, $dsID) {
     global $user;
@@ -355,7 +355,7 @@ class ObjectHelper {
    * getFormattedDC ??
    * @global type $base_url
    * @param type $item
-   * @return type 
+   * @return type
    */
   function getFormattedDC($item) {
     global $base_url;
@@ -591,7 +591,7 @@ class ObjectHelper {
    * @global type $user
    * @param type $op
    * @param type $pid
-   * @return type 
+   * @return type
    */
   function fedora_repository_access($op, $pid) {
     global $user;
@@ -779,7 +779,7 @@ class ObjectHelper {
    * @param type $pid
    * @param type $contentModel
    * @param type $page_number
-   * @return type 
+   * @return type
    */
   function createExtraFieldsets($pid, $contentModel, $page_number) {
     //$models = $collectionHelper->getContentModels($collectionPid, FALSE);
@@ -820,7 +820,7 @@ class ObjectHelper {
    * Get a tree of related pids - for the basket functionality
    *
    * @param type $pid
-   * @return type 
+   * @return type
    */
   function get_all_related_pids($pid) {
     if (!$pid) {
@@ -852,7 +852,7 @@ class ObjectHelper {
    * Get children of PID - but only 2 levels deep
    *
    * @param type $pids
-   * @return type 
+   * @return type
    */
   function get_child_pids($pids) {
     // Get pid, title and description for children of object $pid
@@ -902,7 +902,7 @@ class ObjectHelper {
    * @param type $pid
    * @param type $context
    * @param type $format
-   * @return type 
+   * @return type
    */
   function getObject($pid, $context = 'archive', $format = FOXML_11) {
     module_load_include('inc', 'fedora_repository', 'api/fedora_utils');

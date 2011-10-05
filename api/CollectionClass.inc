@@ -42,7 +42,7 @@ class CollectionClass {
    * @param type $limit
    * @param type $offset
    * @param type $itqlquery
-   * @return type 
+   * @return type
    */
   function getRelatedObjects($pid, $limit, $offset, $itqlquery=NULL) {
     module_load_include('inc', 'fedora_repository', 'ObjectHelper');
@@ -62,7 +62,7 @@ class CollectionClass {
    * @param type $itqlquery
    * @param int $limit
    * @param int $offset
-   * @return type 
+   * @return type
    */
   function getRelatedItems($pid, $itqlquery = NULL, $limit = NULL, $offset = NULL) {
     module_load_include('inc', 'fedora_repository', 'ObjectHelper');
@@ -111,7 +111,7 @@ class CollectionClass {
   /**
    * get Collection Policy Stream ?
    * @param type $collection_pid
-   * @return type 
+   * @return type
    */
   function getCollectionPolicyStream($collection_pid) {
     if ($this->collectionPolicyStream != NULL) {
@@ -124,7 +124,7 @@ class CollectionClass {
   /**
    * get Relationship element ?
    * @param type $collection_pid
-   * @return type 
+   * @return type
    */
   function getRelationshipElement($collection_pid) {
     $stream = $this->getCollectionPolicyStream($collection_pid);
@@ -141,7 +141,7 @@ class CollectionClass {
   /**
    * get Collection View Stream ?
    * @param type $collection_pid
-   * @return type 
+   * @return type
    */
   function getCollectionViewStream($collection_pid) {
     $this->collectionViewStream = $this->getStream($collection_pid, CollectionClass :: $COLLECTION_CLASS_COLLECTION_VIEW_STREAM, 0);
@@ -153,7 +153,7 @@ class CollectionClass {
    * @param type $pid
    * @param type $dsid
    * @param type $showError
-   * @return type 
+   * @return type
    */
   function getStream($pid, $dsid, $showError = 1) {
     module_load_include('inc', 'fedora_repository', 'api/fedora_item');
@@ -165,7 +165,7 @@ class CollectionClass {
    * get Pid name space ?
    * @param type $pid
    * @param type $dsid
-   * @return type 
+   * @return type
    */
   function getPidNameSpace($pid, $dsid) {
     $stream = $this->getCollectionPolicyStream($pid);
@@ -265,7 +265,7 @@ class CollectionClass {
    * get Allowed Mime Types
    * @param type $contentModelPid
    * @param type $contentModel_dsid
-   * @return type 
+   * @return type
    */
   function getAllowedMimeTypes($contentModelPid, $contentModel_dsid) {
     $stream = $this->getContentModelStream($contentModelPid, $contentModel_dsid);
@@ -289,7 +289,7 @@ class CollectionClass {
    * @param type $mimetype
    * @param type $pid
    * @param type $dsid
-   * @return type 
+   * @return type
    */
   function getAndDoRules($file, $mimetype, $pid, $dsid) {
     if (!user_access('ingest new fedora objects')) {
@@ -320,7 +320,7 @@ class CollectionClass {
    *
    * @param type $file
    * @param type $methods
-   * @return type 
+   * @return type
    */
   function callMethods($file, $methods) {
     foreach ($methods as $method) {
@@ -358,7 +358,7 @@ class CollectionClass {
    * @param type $form_state
    * @param type $contentModelPid
    * @param type $contentModelDsid
-   * @return type 
+   * @return type
    */
   function build_ingest_form(&$form, &$form_state, $contentModelPid, $contentModelDsid) {
     $stream = $this->getContentModelStream($contentModelPid, $contentModelDsid);
@@ -427,7 +427,7 @@ class CollectionClass {
    * not using this function currently
    * 
    * @param type $user
-   * @return type 
+   * @return type
    */
   function createUserCollection(& $user) {
     if (isset($user->fedora_personal_pid)) {
@@ -477,7 +477,7 @@ class CollectionClass {
    * @param type $pid
    * @param type $path
    * @param type $canUseDefault
-   * @return type 
+   * @return type
    */
   function getXslContent($pid, $path, $canUseDefault = TRUE) {
     module_load_include('inc', 'fedora_repository', 'CollectionClass');
@@ -604,7 +604,7 @@ class CollectionClass {
    * @param type $dsId
    * @param type $collection
    * @param int $pageNumber
-   * @return type 
+   * @return type
    */
   function renderCollection($content, $pid, $dsId, $collection, $pageNumber = NULL) {
     $path = drupal_get_path('module', 'fedora_repository');

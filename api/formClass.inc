@@ -198,7 +198,7 @@ class formClass {
 
   /**
    * Create admin form
-   * @return type 
+   * @return type
    */
   function createAdminForm() {
     if (!user_access('administer site configuration')) {
@@ -360,7 +360,7 @@ class formClass {
    * @param type $form_id
    * @param type $form_values
    * @param type $client
-   * @return type 
+   * @return type
    */
   function updateMetaData($form_id, $form_values, $client) {
     // ======================================
@@ -429,7 +429,7 @@ class formClass {
    * to determine if this user is allowed to ingest in this collection
    * we assume if they are able to modify objects in the collection they can ingest as well.
    * @param type $collection_pid
-   * @return type 
+   * @return type
    */
   function can_ingest_here($collection_pid) {
     module_load_include('inc', 'fedora_repository', 'SecurityClass');
@@ -440,7 +440,7 @@ class formClass {
   /**
    * Drupal's permissions at this point no xacml yet. xacml decisions are made by fedora
    * @param type $collection_pid
-   * @return type 
+   * @return type
    */
   function canShowIngestForm($collection_pid) {
     if (!user_access('ingest new fedora objects')) {
@@ -801,7 +801,7 @@ class formClass {
    * @param type $dsid
    * @param type $client
    * @param boolean $form_state
-   * @return type 
+   * @return type
    */
   function createMetaDataForm($pid, $dsid, $client, &$form_state) {
     if (module_exists('islandora_content_model_forms')) {
@@ -822,7 +822,7 @@ class formClass {
    * @param type $dsId
    * @param type $dsLabel
    * @param type $form_state
-   * @return type 
+   * @return type
    */
   function createReplaceDataStreamForm($pid, $dsId, $dsLabel, &$form_state) {
     $form = array();

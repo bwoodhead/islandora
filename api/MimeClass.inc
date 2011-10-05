@@ -216,7 +216,7 @@ class MimeClass {
    * for backwards-compatibility with our old mimetype class.
    *
    * @param type $filename
-   * @return type 
+   * @return type
    */
   public function getType($filename) {
     return $this->get_mimetype($filename);
@@ -228,7 +228,7 @@ class MimeClass {
    *
    * @param type $filename
    * @param type $debug
-   * @return type 
+   * @return type
    */
   public function get_mimetype($filename, $debug = FALSE) {
 
@@ -269,7 +269,7 @@ class MimeClass {
    *
    * @param type $mime_type
    * @param type $debug
-   * @return type 
+   * @return type
    */
   public function get_extension($mime_type, $debug = FALSE) {
 
