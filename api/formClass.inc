@@ -45,7 +45,7 @@ class formClass {
       'description' => t('Install content models and collections required by installed solution packs.'),
       'page callback' => 'digital_repository_solution_packs_page',
       'access arguments' => array('add fedora datastreams'),
-      'file' => 'digital_repository.solutionpacks.inc',
+      'file' => 'api/digital_repository.solutionpacks.inc',
       'type' => MENU_LOCAL_TASK,
     );
 
