@@ -961,7 +961,7 @@ function digital_repository_get_items($pid = NULL, $dsId = NULL, $collection = N
   module_load_include('inc', 'digital_repository', 'api/CollectionClass');
   $collectionClass = new CollectionClass();
   module_load_include('inc', 'digital_repository', 'api/ContentModel');
-  module_load_include('inc', 'digital_repository', 'plugins/FedoraObjectDetailedContent');
+  module_load_include('inc', 'digital_repository', 'api/plugins/FedoraObjectDetailedContent');
   $breadcrumbs = array();
   $objectHelper->getBreadcrumbs($pid, $breadcrumbs);
   drupal_set_breadcrumb(array_reverse($breadcrumbs));

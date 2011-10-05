@@ -13,8 +13,8 @@
  * @param array $content_models
 */
 function batch_creation_form(&$form_state, $collection_pid, $content_models) {
-  module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
-  module_load_include('inc', 'fedora_repository', 'CollectionPolicy');
+  module_load_include('inc', 'digital_repository', 'api/fedora_utils');
+  module_load_include('inc', 'digital_repository', 'api/CollectionPolicy');
   $cm_options = array();
   $name_mappings = array();
   foreach ($content_models as $content_model) {
@@ -98,8 +98,8 @@ function batch_creation_form_validate($form, &$form_state) {
 }
 
 function batch_creation_form_submit($form, &$form_state) {
-  module_load_include('inc', 'fedora_repository', 'ContentModel');
-  module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+  module_load_include('inc', 'digital_repository', 'api/ContentModel');
+  module_load_include('inc', 'digital_repository', 'api/fedora_item');
   global $user;
   $namespace_mappings = array();
   $content_model = $form_state['values']['content_model'];
@@ -180,8 +180,8 @@ function batch_creation_form_submit($form, &$form_state) {
 
 
 function create_batch_objects($label, $content_model, $object_files, $collection_pid, $namespace, $metadata) {
-  module_load_include('inc', 'fedora_repository', 'ContentModel');
-  module_load_include('inc', 'fedora_repository', 'MimeClass');
+  module_load_include('inc', 'digital_repository', 'api/ContentModel');
+  module_load_include('inc', 'digital_repository', 'api/MimeClass');
   $cm = ContentModel::loadFromModel($content_model, 'ISLANDORACM');
   $allowed_mime_types = $cm->getMimetypes();
   $mime_helper = new MimeClass();
@@ -232,8 +232,8 @@ function create_batch_objects($label, $content_model, $object_files, $collection
 
 function batch_create_dc_from_mods($mods_xml) {
   $path = drupal_get_path('module', 'fedora_repository');
-  module_load_include('inc', 'fedora_repository', 'ObjectHelper');
-  module_load_include('inc', 'fedora_repository', 'CollectionClass');
+  module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
+  module_load_include('inc', 'digital_repository', 'api/CollectionClass');
 
   if ($xmlstr == NULL || strlen($xmlstr) < 5) {
     return " ";

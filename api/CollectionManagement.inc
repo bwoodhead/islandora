@@ -13,7 +13,7 @@
  * @return array
  */
 function collection_management_form(&$form_state, $this_collection_pid, $content_models) {
-  module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+  module_load_include('inc', 'digital_repository', 'api/fedora_utils');
   $restricted = FALSE;
   if (variable_get('fedora_namespace_restriction_enforced', TRUE)) {
     $restricted = TRUE;
@@ -25,8 +25,8 @@ function collection_management_form(&$form_state, $this_collection_pid, $content
       }
     }
   }
-  module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
-  module_load_include('inc', 'fedora_repository', 'CollectionPolicy');
+  module_load_include('inc', 'digital_repository', 'api/fedora_utils');
+  module_load_include('inc', 'digital_repository', 'api/CollectionPolicy');
   $item = new Fedora_Item($this_collection_pid);
   $collection_name = $item->objectProfile->objLabel;
   $new_content_models = get_content_models_as_option_array();
@@ -229,8 +229,8 @@ function collection_management_form(&$form_state, $this_collection_pid, $content
  */
 function collection_management_form_validate($form, &$form_state) {
   if ($form_state['clicked_button']['#id'] == 'create_class') {
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
     $pid = $form_state['values']['new_collection_pid'];
     $item = new fedora_item($pid);
     if ($item->exists()) {
@@ -257,9 +257,9 @@ function collection_management_form_validate($form, &$form_state) {
  * @param type $form_state
  */
 function collection_management_form_submit($form, &$form_state) {
-  module_load_include('inc', 'fedora_repository', 'api/fedora_collection');
-  module_load_include('inc', 'fedora_repository', 'api/fedora_item');
-  module_load_include('inc', 'fedora_repository', 'api/dublin_core');
+  module_load_include('inc', 'digital_repository', 'api/fedora_collection');
+  module_load_include('inc', 'digital_repository', 'api/fedora_item');
+  module_load_include('inc', 'digital_repository', 'api/dublin_core');
   global $user;
   $collection_pid = $form_state['values']['parent_collection'];
   $policy = CollectionPolicy::loadFromCollection($collection_pid, TRUE);
@@ -394,7 +394,7 @@ function collection_management_form_submit($form, &$form_state) {
  * @param <type> $pid
  */
 function delete_objects_as_batch($pid) {
-  module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+  module_load_include('inc', 'digital_repository', 'api/fedora_item');
   $name = $user->name;
   $item_to_delete = new Fedora_Item($pid);
   $models = $item_to_delete->get_models();

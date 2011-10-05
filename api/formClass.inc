@@ -205,8 +205,8 @@ class formClass {
       drupal_set_message(t('You must be a site administrator to edit the Fedora collecitons list.'), 'error');
       return;
     }
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
-    module_load_include('inc', 'fedora_repository', 'ObjectHelper');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
     $form = array();
     $form['fedora_repository_name'] = array(
       '#type' => 'textfield',
@@ -432,7 +432,7 @@ class formClass {
    * @return type
    */
   function can_ingest_here($collection_pid) {
-    module_load_include('inc', 'fedora_repository', 'SecurityClass');
+    module_load_include('inc', 'digital_repository', 'api/SecurityClass');
     $securityClass = new SecurityClass();
     return $securityClass->canIngestHere($collection_pid);
   }
@@ -447,7 +447,7 @@ class formClass {
       drupal_set_message(t('You do not have permission to ingest.'), 'error');
       return FALSE;
     }
-    module_load_include('inc', 'fedora_repository', 'SecurityClass');
+    module_load_include('inc', 'digital_repository', 'api/SecurityClass');
     $security_class = new SecurityClass();
     if (!$security_class->canIngestHere($collection_pid)) {
       // Queries the collection object for a child security datastream and if found parses it
@@ -523,7 +523,7 @@ class formClass {
    * @return array
    */
   function createQDCIngestFormPageTwo($collection_pid, $collection_label, array &$form_state) {
-    module_load_include('inc', 'fedora_repository', 'ContentModel');
+    module_load_include('inc', 'digital_repository', 'api/ContentModel');
     $form = array();
     $content_model_pid = ContentModel::getPidFromIdentifier($form_state['values']['models']);
     $content_model_dsid = ContentModel::getDSIDFromIdentifier($form_state['values']['models']);
@@ -558,7 +558,7 @@ class formClass {
    * @return array
    */
   function createQDCIngestForm($collection_pid, $collection_label, array &$form_state) {
-    module_load_include('inc', 'fedora_repository', 'CollectionPolicy');
+    module_load_include('inc', 'digital_repository', 'api/CollectionPolicy');
     $form_state['storage']['step'] = empty($form_state['storage']['step']) ? 1 : $form_state['storage']['step'];
     if ($form_state['storage']['step'] == 1) {
       return $this->createQDCIngestFormPageOne($collection_pid, $collection_label, $form_state);
@@ -603,9 +603,9 @@ class formClass {
     //dump_vars($form_state);
     // Populate the list of datastream IDs.
 
-    module_load_include('inc', 'fedora_repository', 'ObjectHelper');
-    module_load_include('inc', 'fedora_repository', 'ContentModel');
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
+    module_load_include('inc', 'digital_repository', 'api/ContentModel');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
 
     $obj_helper = new ObjectHelper();
     $content_models = $obj_helper->get_content_models_list($pid);

@@ -28,8 +28,8 @@ class Fedora_Item {
    */
   function __construct($pid) {
     drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
-    module_load_include('inc', 'fedora_repository', 'ConnectionHelper');
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/ConnectionHelper');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
 
     $this->pid = $pid;
     if (isset(Fedora_Item::$instantiated_pids[$pid])) {
@@ -75,7 +75,7 @@ class Fedora_Item {
    * @return type
    */
   function add_datastream_from_file($datastream_file, $datastream_id, $datastream_label = NULL, $datastream_mimetype = '', $controlGroup = 'M', $logMessage = NULL) {
-    module_load_include('inc', 'fedora_repository', 'MimeClass');
+    module_load_include('inc', 'digital_repository', 'api/MimeClass');
     if (!is_file($datastream_file)) {
       drupal_set_message(t("@datastream_file not found<br />", array('@datastream_file' => check_plain($datastream_file))), 'warning');
       return;
@@ -285,7 +285,7 @@ class Fedora_Item {
    * @return Array of pid => title pairs that match the results
    */
   static function find_objects_by_pattern($pattern = '*', $field = 'pid', $max_results = 100, $resultFields = array()) {
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
 
     $pattern = url($pattern);
     $done = FALSE;
@@ -855,7 +855,7 @@ class Fedora_Item {
    */
   static function soap_call($function_name, $params_array, $quiet = FALSE) {
     if (!self::$connection_helper) {
-      module_load_include('inc', 'fedora_repository', 'ConnectionHelper');
+      module_load_include('inc', 'digital_repository', 'api/ConnectionHelper');
       self::$connection_helper = new ConnectionHelper();
     }
     switch ($function_name) {

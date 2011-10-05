@@ -247,7 +247,7 @@ abstract class XMLDatastream {
    * @return boolean $valid
    */
   public function purgeVersions($start_date, $end_date = NULL) {
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
     $fedora_item = new Fedora_Item($this->pid);
     return $fedora_item->purge_datastream($this->dsid, $start_date, $end_date);
   }
@@ -259,7 +259,7 @@ abstract class XMLDatastream {
    * @return string[] $ret
    */
   public function getHistory() {
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
     $fedora_item = new Fedora_Item($this->pid);
     $history = $fedora_item->get_datastream_history($this->dsid);
 

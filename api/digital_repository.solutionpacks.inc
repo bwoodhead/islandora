@@ -47,7 +47,7 @@ function fedora_repository_solution_packs_page() {
  */
 function fedora_repository_solution_pack_form(&$form_state, $solution_pack_module, $solution_pack_name, $objects = array()) {
   // Check each object to see if it is in the repository.
-  module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+  module_load_include('inc', 'digital_repository', 'api/fedora_item');
   global $base_path;
   $needs_update = FALSE;
   $needs_install = FALSE;

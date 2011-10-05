@@ -29,7 +29,7 @@ class CollectionClass {
    */
   function __construct($pid = NULL) {
     if (!empty($pid)) {
-      module_load_include('inc', 'fedora_repository', 'ObjectHelper');
+      module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
       $this->collectionObject = new ObjectHelper($pid);
       $this->pid = $pid;
     }
@@ -45,7 +45,7 @@ class CollectionClass {
    * @return type
    */
   function getRelatedObjects($pid, $limit, $offset, $itqlquery=NULL) {
-    module_load_include('inc', 'fedora_repository', 'ObjectHelper');
+    module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
     $objectHelper = new ObjectHelper();
     if (!isset($itqlquery)) {
       // $query_string = $objectHelper->getStream($pid, 'QUERY', 0);
@@ -65,8 +65,8 @@ class CollectionClass {
    * @return type
    */
   function getRelatedItems($pid, $itqlquery = NULL, $limit = NULL, $offset = NULL) {
-    module_load_include('inc', 'fedora_repository', 'ObjectHelper');
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
     if (!isset($limit)) {
       $limit = 1000;
     }
@@ -156,7 +156,7 @@ class CollectionClass {
    * @return type
    */
   function getStream($pid, $dsid, $showError = 1) {
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
     $item = new fedora_item($pid);
     return isset($item->datastreams[$dsid]) ? $item->get_datastream_dissemination($dsid) : NULL;
   }
@@ -230,7 +230,7 @@ class CollectionClass {
     module_load_include('inc', 'Fedora_Repository', 'ConnectionHelper');
     $pidNameSpace = $this->getPidNameSpace($pid, $dsid);
     $pname = substr($pidNameSpace, 0, strpos($pidNameSpace, ":"));
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
     return Fedora_Item::get_next_pid_in_namespace($pname);
   }
 
@@ -451,7 +451,7 @@ class CollectionClass {
       'name' => variable_get('fedora_admin_user', 'fedoraAdmin')
     );
     $admin_user = user_load($username);
-    module_load_include('inc', 'fedora_repository', 'ConnectionHelper');
+    module_load_include('inc', 'digital_repository', 'api/ConnectionHelper');
     $connectionHelper = new ConnectionHelper();
     try {
       $soapClient = $connectionHelper->getSoapClient(variable_get('fedora_soap_manage_url', 'http://localhost:8080/fedora/services/management?wsdl'));
@@ -474,7 +474,7 @@ class CollectionClass {
     $personal_collection_pid = array(
       'fedora_personal_pid' => $pid
     );
-    module_load_include('inc', 'fedora_repository', 'plugins/PersonalCollectionClass');
+    module_load_include('inc', 'digital_repository', 'api/plugins/PersonalCollectionClass');
     $personalCollectionClass = new PersonalCollectionClass();
     if (!$personalCollectionClass->createCollection($user, $pid, $soapClient)) {
       drupal_set_message(t("Did not create a personal collection object for @u", array('@u' => check_plain($user->name))));
@@ -494,7 +494,7 @@ class CollectionClass {
    * @return type
    */
   function getXslContent($pid, $path, $canUseDefault = TRUE) {
-    module_load_include('inc', 'fedora_repository', 'CollectionClass');
+    module_load_include('inc', 'digital_repository', 'api/CollectionClass');
     $collectionClass = new CollectionClass();
     $xslContent = $collectionClass->getCollectionViewStream($pid);
     if (!$xslContent && $canUseDefault) { //no xslt so we will use the default sent with the module
@@ -511,9 +511,9 @@ class CollectionClass {
    * @return string 
    */
   function showFieldSets($page_number) {
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
-    module_load_include('inc', 'fedora_repository', 'CollectionManagement');
-    module_load_include('inc', 'fedora_repository', 'BatchIngest');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/CollectionManagement');
+    module_load_include('inc', 'digital_repository', 'api/BatchIngest');
     global $base_url;
     $tabset = array();
     global $user;

@@ -185,8 +185,8 @@ class SearchClass {
    * @return type
    */
   function quickSearch($type, $query, $showForm = 1, $orderBy = 0, & $userArray) {
-    module_load_include('inc', 'fedora_repository', 'ObjectHelper');
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
     if (user_access('view fedora collection')) {
       $numberOfHistPerPage = '5000'; //hack for IR they do not want next button
       $luceneQuery = NULL;
@@ -237,8 +237,8 @@ class SearchClass {
    * @return type
    */
   function getTerms($fieldName, $startTerm, $displayName = NULL) {
-    module_load_include('inc', 'fedora_repository', 'ObjectHelper');
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
     $indexName = variable_get('fedora_index_name', 'DemoOnLucene');
     $searchUrl = variable_get('fedora_fgsearch_url', 'http://localhost:8080/fedoragsearch/rest');
     if ($startTerm == NULL) {
@@ -269,8 +269,8 @@ class SearchClass {
    * @return type
    */
   function custom_search_execute($query, $startPage=1, $xslt= '/xsl/advanced_search_results.xsl', $numberOfHistPerPage = 50) {
-    module_load_include('inc', 'fedora_repository', 'ObjectHelper');
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
 
     if (user_access('view fedora collection')) {
       //$numberOfHistPerPage = '50';//hack for IR they do not want next button

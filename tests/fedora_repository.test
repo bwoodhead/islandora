@@ -18,7 +18,7 @@ class FedoraRepositoryTestCase extends DrupalWebTestCase {
   function setUp() {
     parent::setUp('tabs', 'fedora_repository');
 
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
 
     // Create and login user.
     $repository_user = $this->drupalCreateFedoraUser(array('add fedora datastreams',

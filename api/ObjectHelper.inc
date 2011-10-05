@@ -32,7 +32,7 @@ class ObjectHelper {
    */
   function ObjectHelper() {
     drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
-    module_load_include('inc', 'fedora_repository', 'ConnectionHelper');
+    module_load_include('inc', 'digital_repository', 'api/ConnectionHelper');
     $connectionHelper = new ConnectionHelper();
     //$this->fedoraUser = $connectionHelper->getUser();
     //$this->fedoraPass = $connectionHelper->getPassword();
@@ -55,7 +55,7 @@ class ObjectHelper {
    */
   function makeObject($pid, $dsID, $asAttachment = FALSE, $label = NULL, $filePath=FALSE, $version=NULL, $forceSoap = TRUE) {
     global $user;
-    module_load_include('inc', 'fedora_repository', 'ContentModel');
+    module_load_include('inc', 'digital_repository', 'api/ContentModel');
     if ($pid == NULL || $dsID == NULL) {
       drupal_set_message(t("no pid or dsid given to create an object with"), 'error');
       return ' ';
@@ -90,7 +90,7 @@ class ObjectHelper {
       }
     }
 
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
     $item = new Fedora_Item($pid);
 
 
@@ -175,7 +175,7 @@ class ObjectHelper {
            * for the mimetype in question.
            */
           if ($pos === FALSE) {
-            module_load_include('inc', 'fedora_repository', 'MimeClass');
+            module_load_include('inc', 'digital_repository', 'api/MimeClass');
             $mimeclass = new MimeClass();
             $ext = $mimeclass->get_extension($mimeType);
             $suggestedFileName = "$label.$ext";
@@ -206,7 +206,7 @@ class ObjectHelper {
    * @return type
    */
   function getCollectionInfo($pid, $query = NULL) {
-    module_load_include('inc', 'fedora_repository', 'CollectionClass');
+    module_load_include('inc', 'digital_repository', 'api/CollectionClass');
     $collectionClass = new CollectionClass();
     $results = $collectionClass->getRelatedItems($pid, $query);
     return $results;
@@ -231,7 +231,7 @@ class ObjectHelper {
       return;
     }
 
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
     $item = new fedora_item($pid);
     $datastream_list = $item->get_datastreams_list_as_SimpleXML();
     if (!isset($datastream_list)) {
@@ -266,7 +266,7 @@ class ObjectHelper {
       return;
     }
 
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
     $item = new fedora_item($pid);
     $datastream_list = $item->get_datastreams_list_as_SimpleXML();
     if (!isset($datastream_list)) {
@@ -359,7 +359,7 @@ class ObjectHelper {
   function getFormattedDC($item) {
     global $base_url;
     $path = drupal_get_path('module', 'fedora_repository');
-    module_load_include('inc', 'fedora_repository', 'ConnectionHelper');
+    module_load_include('inc', 'digital_repository', 'api/ConnectionHelper');
 
     $dsid = array_key_exists('QDC', $item->get_datastreams_list_as_array()) ? 'QDC' : 'DC';
     $xmlstr = $item->get_datastream_dissemination($dsid);
@@ -439,10 +439,10 @@ class ObjectHelper {
    */
   function get_formatted_datastream_list($object_pid, $contentModels, &$fedoraItem) {
     global $fedoraUser, $fedoraPass, $base_url, $user;
-    module_load_include('inc', 'fedora_repository', 'ConnectionHelper');
-    module_load_include('inc', 'fedora_repository', 'ObjectHelper');
-    module_load_include('inc', 'fedora_repository', 'api/fedora_item');
-    module_load_include('inc', 'fedora_repository', 'ContentModel');
+    module_load_include('inc', 'digital_repository', 'api/ConnectionHelper');
+    module_load_include('inc', 'digital_repository', 'api/ObjectHelper');
+    module_load_include('inc', 'digital_repository', 'api/fedora_item');
+    module_load_include('inc', 'digital_repository', 'api/ContentModel');
 
     $path = drupal_get_path('module', 'fedora_repository');
     $dataStreamBody = '';
@@ -513,7 +513,7 @@ class ObjectHelper {
    *
    */
   function getStream($pid, $dsid, $showError = FALSE) {
-    module_load_include('inc', 'fedora_repository', 'ConnectionHelper');
+    module_load_include('inc', 'digital_repository', 'api/ConnectionHelper');
     $soapHelper = new ConnectionHelper();
     try {
       $client = $soapHelper->getSoapClient(variable_get('fedora_soap_url', 'http://localhost:8080/fedora/services/access?wsdl'));
@@ -547,7 +547,7 @@ class ObjectHelper {
    * @return array 
    */
   function get_content_models_list($pid, $include_fedora_system_content_models = FALSE) {
-    module_load_include('inc', 'fedora_repository', 'CollectionClass');
+    module_load_include('inc', 'digital_repository', 'api/CollectionClass');
     $collectionHelper = new CollectionClass();
     $pids = array();
     $query = 'select $object from <#ri>
@@ -789,7 +789,7 @@ class ObjectHelper {
       return NULL;
     }
     $output = '';
-    module_load_include('inc', 'fedora_repository', 'ContentModel');
+    module_load_include('inc', 'digital_repository', 'api/ContentModel');
     if (($cm = ContentModel :: loadFromModel($contentModel)) !== FALSE && $cm->validate()) {
       $output .= $cm->displayExtraFieldset($pid, $page_number);
     }
@@ -809,7 +809,7 @@ class ObjectHelper {
       return FALSE;
     }
 
-    module_load_include('inc', 'fedora_repository', 'ContentModel');
+    module_load_include('inc', 'digital_repository', 'api/ContentModel');
     if ($dsid != NULL && $pid != NULL && ($cm = ContentModel::loadFromObject($pid)) !== FALSE) {
       $cm->execAddDatastreamMethods($dsid, $file);
     }
@@ -825,7 +825,7 @@ class ObjectHelper {
     if (!$pid) {
       return FALSE;
     }
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
 
     // Get title and descriptions for $pid 
     $query_string = 'select $title $desc from <#ri> 
@@ -904,7 +904,7 @@ class ObjectHelper {
    * @return type
    */
   function getObject($pid, $context = 'archive', $format = FOXML_11) {
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
 
     $url = variable_get('fedora_base_url', 'http://localhost:8080/fedora') . '/objects/' . $pid . '/export?context=' . $context . '&format=' . $format;
     $result_data = do_curl($url);
@@ -920,7 +920,7 @@ class ObjectHelper {
    * @param type $level 
    */
   function getBreadcrumbs($pid, &$breadcrumbs, $level=10) {
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
     // Before executing the query, we hve a base case of accessing the top-level collection
     global $base_url;
     if ($pid == variable_get('fedora_repository_pid', 'islandora:root')) {

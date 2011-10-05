@@ -89,7 +89,7 @@ function fedora_repository_requirements($phase) {
     }
   }
   elseif ($phase == 'runtime') {
-    module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+    module_load_include('inc', 'digital_repository', 'api/fedora_utils');
 
     $requirements['fedora-repository']['title'] = t("Fedora server");
     if (!fedora_available()) {

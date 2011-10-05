@@ -238,7 +238,7 @@ function fix_dsid($dsid) {
  * @return array
  */
 function get_collections_as_option_array() {
-  module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+  module_load_include('inc', 'digital_repository', 'api/fedora_utils');
   $query = 'select $object $title from <#ri>
                             where ($object <dc:title> $title
                               and $object <info:fedora/fedora-system:def/model#hasModel> <info:fedora/islandora:collectionCModel>
@@ -269,8 +269,8 @@ function get_collections_as_option_array() {
  * @return array
  */
 function get_content_models_as_option_array() {
-  module_load_include('inc', 'fedora_repository', 'api/fedora_item');
-  module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+  module_load_include('inc', 'digital_repository', 'api/fedora_item');
+  module_load_include('inc', 'digital_repository', 'api/fedora_utils');
   $restricted = variable_get('fedora_namespace_restriction_enforced', TRUE);
   $allowed_string = variable_get('fedora_pids_allowed', 'default: demo: changeme: islandora:');
   $namespaces = explode(':', $allowed_string);
