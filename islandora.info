@@ -1,6 +1,9 @@
-; $Id$
 name = Islandora Core
-description = Show the core islandora module.
+description = The core Islandora module.
 package = Islandora
 version = 7.x-dev-$Format:%h$
 core = 7.x
+dependencies[] = fedora_api
+files[] = islandora.module
+files[] = islandora.install
+configure = admin/config/content/islandora
