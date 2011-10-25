@@ -133,5 +133,7 @@ function islandora_permission() {
 
 function islandora_view_object($pid=null)
 {
-  return "Hello World";
+  var $repo = new FedoraRepository();
+  var $results = $repo.findObjects("islandora:*");
+  return $results;
 }
