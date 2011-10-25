@@ -52,7 +52,7 @@ function islandora_menu() {
   $items['islandora/%islandora_object/view/%'] = array(
     'title' => 'View Islandora Datastream',
     'page callback' => 'islandora_view_datastream',
-    'page arguments' => array(1,3),
+    'page arguments' => array(1, 3),
     'type' => MENU_CALLBACK,
     'access arguments' => array('islandora view object')
   );
@@ -61,7 +61,7 @@ function islandora_menu() {
   $items['islandora/%islandora_object/download/%'] = array(
     'title' => 'Download Islandora Datastream',
     'page callback' => 'islandora_download_datastream',
-    'page arguments' => array(1,3),
+    'page arguments' => array(1, 3),
     'type' => MENU_CALLBACK,
     'access arguments' => array('islandora view object')
   );
@@ -70,7 +70,7 @@ function islandora_menu() {
   $items['islandora/%islandora_object/addDatastream'] = array(
     'title' => 'Add a datastream to an object',
     'page callback' => 'islandora_download_datastream',
-    'page arguments' => array(1,3),
+    'page arguments' => array(1, 3),
     'type' => MENU_CALLBACK,
     'access arguments' => array('islandora add datastream')
   );
@@ -79,7 +79,7 @@ function islandora_menu() {
   $items['islandora/%islandora_object/purge'] = array(
     'title' => 'Add a datastream to an object',
     'page callback' => 'islandora_download_datastream',
-    'page arguments' => array(1,3),
+    'page arguments' => array(1, 3),
     'type' => MENU_CALLBACK,
     'access arguments' => array('islandora purge')
   );
