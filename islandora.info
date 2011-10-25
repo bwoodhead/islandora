@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-name = Islandora Core
-description = Show the core islandora module.
-package = Islandora
-version = 7.x-$Format:%h-$dev
-core = 7.x
-=======
 name = Islandora Core
 description = The core Islandora module.
 package = Islandora
@@ -14,4 +7,3 @@ dependencies[] = fedora_api
 files[] = islandora.module
 files[] = islandora.install
 configure = admin/config/content/islandora
->>>>>>> 47bfb020f733ae60b230bc3b3395234e93b3dcfd
