@@ -133,9 +133,8 @@ function islandora_permission() {
 
 function islandora_view_object($pid=null)
 {
-  module_load_include('inc', 'islandora_fedora_repository', 'FedoraRepository');
-  var $repo = new FedoraRepository();
-  var $results = $repo.findObjects("islandora:*");
-  return $results;
+  module_load_include('object.inc', 'islandora_fedora_api'); //for getting an object
+  $object= new FedoraObject($pid);
+  return "blah";
 } 
  
