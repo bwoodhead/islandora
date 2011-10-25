@@ -131,7 +131,7 @@ function islandora_permission() {
 }
 
 
-function islandora_view_object($value)
+function islandora_view_object()
 {
-  var_dump($value);
+  //var_dump($value);
 }
