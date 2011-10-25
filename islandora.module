@@ -2,8 +2,8 @@
 
 /**
  * @file
- * Main file for the Islandora module. 
- * 
+ * Main file for the Islandora module.
+ *
  * This file registers the menu paths and calls the view hooks
  * for Islandora 7 core. 
  */
@@ -26,7 +26,7 @@ function islandora_menu() {
 
   // main islandora page - this is an implicit view of the top level collection
   $items['islandora'] = array(
-    'title' =>  variable_get('islandora_repository_title', 'Islandora'),
+    'title' => variable_get('islandora_repository_title', 'Islandora'),
     'page callback' => 'islandora_view_object',
     'access arguments' => array('islandora view object'),
     'type' => MENU_NORMAL_ITEM,
@@ -84,7 +84,7 @@ function islandora_menu() {
     'access arguments' => array('islandora purge')
   );
 
-  
+
   return $items;
 }
 
@@ -128,4 +128,10 @@ function islandora_permission() {
     'restrict access' => TRUE,
   );
   return $permissions;
+}
+
+
+function islandora_view_object($value)
+{
+  var_dump($value);
 }

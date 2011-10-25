@@ -12,7 +12,6 @@
  */
 function islandora_admin_settings($form, &$form_state) {
 
-
   $form = array();
 
   $form['settings'] = array(
@@ -38,7 +37,7 @@ function islandora_admin_settings($form, &$form_state) {
   $form['general']['fedora_repository_pid'] = array(
     '#type' => 'textfield',
     '#title' => t('Default collection PID'),
-    '#default_value' => variable_get('fedora_repository_pid', 'islandora:top'),
+    '#default_value' => variable_get('fedora_repository_pid', 'islandora:root'),
     '#description' => t('The PID of the collection object to grab the list of items from'),
     '#required' => TRUE,
     '#weight' => -2
