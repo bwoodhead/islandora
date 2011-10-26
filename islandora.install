@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Basic database for islandora use.
+ * @return string 
+ */
 function islandora_schema() {
   $schema['islandora'] = array(
     'description' => 'Islandora', 
