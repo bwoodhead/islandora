@@ -1,0 +1,30 @@
+<?php
+
+function islandora_schema() {
+  $schema['islandora'] = array(
+    'description' => 'Islandora', 
+    'fields' => array(
+      'islandora_id' => array( 
+        'description' => 'asdf.', 
+        'type' => 'int', 
+        'unsigned' => TRUE, 
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'islandora_name' => array( 
+        'description' => 'asdf.', 
+        'type' => 'varchar', 
+        'length' => 255, 
+        'not null' => TRUE, 
+        'default' => '',      
+      ),
+    ),
+    'indexes' => array(
+      'islandora_islandora_name' => array('islandora_name'), 
+    ), 
+    'primary key' => array('islandora_id'),    
+  );
+  return $schema;
+}
+
+?>
