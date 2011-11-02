@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file 
+ * Describe your file here. 
+ */
+class MyModuleTestCase extends DrupalWebTestCase {
+
+  protected $privileged_user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Islandora Core',
+      'description' => t('The Islandora Core tests.'),
+      'group' => 'islandora',
+    );
+  }
+
+  public function setUp() {
+    
+    // Call the parent setup
+    parent::setUp('islandora_core');
+
+    // Create and login user.
+    $this->privileged_user = $this->drupalCreateFedoraUser();
+    $this->pass("Password: " . $this->privileged_user->pass);
+
+    $this->drupalLogin($this->privileged_user);
+  }
+
+  public function testMainTest() 
+  {
+    
+  }
+
+}

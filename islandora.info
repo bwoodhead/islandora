@@ -6,4 +6,5 @@ core = 7.x
 dependencies[] = islandora_fedora_api
 files[] = islandora.module
 files[] = islandora.install
+files[] = islandora.test
 configure = admin/config/content/islandora
