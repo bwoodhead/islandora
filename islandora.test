@@ -2,9 +2,11 @@
 
 /**
  * @file 
- * Describe your file here. 
+ * Islandora Core Simpletest
  */
-class MyModuleTestCase extends DrupalWebTestCase {
+
+
+class IslandoraCoreTestCase extends DrupalWebTestCase {
 
   protected $privileged_user;
 
